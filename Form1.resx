@@ -141,15 +141,15 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="btnShowPasswort.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAGwSURBVDhPrZS9isJQEIV9BStLC2t9glUre8VnsLAVwSza
-        WCQIIqTVpIiFBASL1cJKbBRtLSy3EfIEEkTXv7PJ7O64XpMs61eEOzNnTu4dkhu6BON8PtPqAYGM4PJf
-        o8Ph8OGw3+/x9LALejRffIwmk0mtViuXy71e73Q6UVaEl1EulwsxotHoZrOh2t34HxoVCgW3Wdf1fr+f
-        z+cRxmIxKt8hNrIsC23hcJhih1QqheRisaD4FrERJoIewzAodlgul0jKskzxLQKj9XqNE6EnHo+n0+kX
-        h2QymUgkkIxEInAkKUNgVK/X0eBBsVgkKUNg1Gw2oVYU5f2OdruNUqVSISlDYNRqtaAeDAYUM2azGUqS
-        JFHMICP+UbhGmqZRzBi+DX2MOO7RnmCkqirUnU6HYsZoNEIp6IxgAfV4PKaYsVqtfHb0ed98jcmdUSaT
-        qVarrwyE2WwWpVKp5Cr5ZH92hCxuHCy63S7UHjQaDchs23b6iJujwWu73WIxn89N08SP8gskp9MpBLvd
-        jm8HCGYEEa0egNuSVgyB0Td4Jy4z94lTH49Hj9vWy+hPPMnocrkCgXm7KbL04AUAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAIAAABvFaqvAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        EQAACxEBf2RfkQAAAbBJREFUOE+tlL2KwlAQhX0FK0sLa32CVSt7xWewsBXBLNpYJAgipNWkiIUEBIvV
+        wkpsFG0tLLcR8gQSRNe/s8ns7rhekyzrV4Q7M2dO7h2SG7oE43w+0+oBgYzg8l+jw+Hw4bDf7/H0sAt6
+        NF98jCaTSa1WK5fLvV7vdDpRVoSXUS6XCzGi0ehms6Ha3fgfGhUKBbdZ1/V+v5/P5xHGYjEq3yE2siwL
+        beFwmGKHVCqF5GKxoPgWsREmgh7DMCh2WC6XSMqyTPEtAqP1eo0ToScej6fT6ReHZDKZSCSQjEQicCQp
+        Q2BUr9fR4EGxWCQpQ2DUbDahVhTl/Y52u41SpVIhKUNg1Gq1oB4MBhQzZrMZSpIkUcwgI/5RuEaaplHM
+        GL4NfYw47tGeYKSqKtSdTodixmg0QinojGAB9Xg8ppixWq18dvR533yNyZ1RJpOpVquvDITZbBalUqnk
+        Kvlkf3aELG4cLLrdLtQeNBoNyGzbdvqIm6PBa7vdYjGfz03TxI/yCySn0ykEu92ObwcIZgQRrR6A25JW
+        DIHRN3gnLjP3iVMfj0eP29bL6E88yehyuQKBebspsvTgBQAAAABJRU5ErkJggg==
 </value>
   </data>
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">

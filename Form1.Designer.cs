@@ -102,6 +102,7 @@ namespace Dateiverwaltung
             this.abteilungsTab.TabIndex = 0;
             this.abteilungsTab.Text = "Abteilung";
             this.abteilungsTab.UseVisualStyleBackColor = true;
+            this.abteilungsTab.Click += new System.EventHandler(this.abteilungsTab_Click);
             // 
             // eigeneTab
             // 

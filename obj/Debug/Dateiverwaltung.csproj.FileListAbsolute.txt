@@ -12,3 +12,17 @@ C:\Stuff\Code\Dateiverwaltung\newDateiverwaltung\obj\Debug\Dateiverwaltung.pdb
 C:\Stuff\Code\Dateiverwaltung\newDateiverwaltung\bin\Debug\Newtonsoft.Json.dll
 C:\Stuff\Code\Dateiverwaltung\newDateiverwaltung\bin\Debug\Newtonsoft.Json.xml
 C:\Stuff\Code\Dateiverwaltung\newDateiverwaltung\obj\Debug\Dateiverwaltung.csproj.CopyComplete
+C:\Stuff\Code\Dateiverwaltung\Dateiverwaltung\bin\Debug\Dateiverwaltung.exe.config
+C:\Stuff\Code\Dateiverwaltung\Dateiverwaltung\bin\Debug\Dateiverwaltung.exe
+C:\Stuff\Code\Dateiverwaltung\Dateiverwaltung\bin\Debug\Dateiverwaltung.pdb
+C:\Stuff\Code\Dateiverwaltung\Dateiverwaltung\bin\Debug\Newtonsoft.Json.dll
+C:\Stuff\Code\Dateiverwaltung\Dateiverwaltung\bin\Debug\Newtonsoft.Json.xml
+C:\Stuff\Code\Dateiverwaltung\Dateiverwaltung\obj\Debug\Dateiverwaltung.csproj.AssemblyReference.cache
+C:\Stuff\Code\Dateiverwaltung\Dateiverwaltung\obj\Debug\Dateiverwaltung.csproj.SuggestedBindingRedirects.cache
+C:\Stuff\Code\Dateiverwaltung\Dateiverwaltung\obj\Debug\Dateiverwaltung.Form1.resources
+C:\Stuff\Code\Dateiverwaltung\Dateiverwaltung\obj\Debug\Dateiverwaltung.Properties.Resources.resources
+C:\Stuff\Code\Dateiverwaltung\Dateiverwaltung\obj\Debug\Dateiverwaltung.csproj.GenerateResource.cache
+C:\Stuff\Code\Dateiverwaltung\Dateiverwaltung\obj\Debug\Dateiverwaltung.csproj.CoreCompileInputs.cache
+C:\Stuff\Code\Dateiverwaltung\Dateiverwaltung\obj\Debug\Dateiverwaltung.csproj.CopyComplete
+C:\Stuff\Code\Dateiverwaltung\Dateiverwaltung\obj\Debug\Dateiverwaltung.exe
+C:\Stuff\Code\Dateiverwaltung\Dateiverwaltung\obj\Debug\Dateiverwaltung.pdb
