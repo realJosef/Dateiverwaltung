@@ -32,7 +32,13 @@
   {
     "Name": "test1",
     "Dateipfad": "test1",
-    "Abteilung": "Aggregate",
+    "Abteilung": "Mechatronik",
+    "Passwort": null
+  },
+  {
+    "Name": "Dauerlauf",
+    "Dateipfad": "\\\\de-szr-wwshare\\wwshare\\_Austausch_HFL-HMH\\Planung\\Dauerlaufplanung\\Dauerlaufplanung.xlsb",
+    "Abteilung": "Alle",
     "Passwort": null
   }
 ]

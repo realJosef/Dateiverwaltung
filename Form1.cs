@@ -178,11 +178,68 @@ namespace Dateiverwaltung
             }
             
         }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        object oldNameValue = "";
+        object oldPathValue = "";
+        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex == 1)
+            {
+                oldNameValue = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+            }
+            if (e.ColumnIndex == 2)
+            {
+                oldPathValue = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+            }
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 1)
+            {
+                object newNameValue;
+                if (oldNameValue != dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value)
+                {
+                    newNameValue = publicPfadEintraege[e.RowIndex].Name = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    foreach (Button button in abteilungsTab.Controls.OfType<Button>())
+                    {
+                        if (button.Text == oldNameValue.ToString())
+                        {
+                            button.Text = newNameValue.ToString();
+                            savePublicDB();
+                        }
+                    }
+                }
+            }
+            if (e.ColumnIndex == 2)
+            {
+                object newPathValue;
+                if (oldPathValue != dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value)
+                {
+                    newPathValue = publicPfadEintraege[e.RowIndex].Dateipfad = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+                    foreach (Button button in abteilungsTab.Controls.OfType<Button>())
+                    {
+                        if (button.Name == oldPathValue.ToString())
+                        {
+                            button.Name = newPathValue.ToString();
+                            savePublicDB();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 2 && e.RowIndex != -1)
             {
-                System.Diagnostics.Process.Start(Path.GetDirectoryName(publicPfadEintraege[e.RowIndex].Dateipfad));
+                try
+                {
+                    System.Diagnostics.Process.Start(Path.GetDirectoryName(publicPfadEintraege[e.RowIndex].Dateipfad));
+                }
+                catch (Exception)
+                {
+                }
             }
 
             if (e.ColumnIndex == 3 && e.RowIndex != -1)

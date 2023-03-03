@@ -77,8 +77,9 @@ namespace Dateiverwaltung
             // 
             this.flowLayoutPanel1.Controls.Add(this.tabControl1);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(801, 451);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(601, 366);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // tabControl1
@@ -87,29 +88,31 @@ namespace Dateiverwaltung
             this.tabControl1.Controls.Add(this.eigeneTab);
             this.tabControl1.Controls.Add(this.verwaltungsTab);
             this.tabControl1.Controls.Add(this.benutzerTab);
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Location = new System.Drawing.Point(2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(798, 448);
+            this.tabControl1.Size = new System.Drawing.Size(598, 364);
             this.tabControl1.TabIndex = 0;
             // 
             // abteilungsTab
             // 
-            this.abteilungsTab.Location = new System.Drawing.Point(4, 25);
+            this.abteilungsTab.Location = new System.Drawing.Point(4, 22);
+            this.abteilungsTab.Margin = new System.Windows.Forms.Padding(2);
             this.abteilungsTab.Name = "abteilungsTab";
-            this.abteilungsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.abteilungsTab.Size = new System.Drawing.Size(790, 419);
+            this.abteilungsTab.Padding = new System.Windows.Forms.Padding(2);
+            this.abteilungsTab.Size = new System.Drawing.Size(590, 338);
             this.abteilungsTab.TabIndex = 0;
             this.abteilungsTab.Text = "Abteilung";
             this.abteilungsTab.UseVisualStyleBackColor = true;
-            this.abteilungsTab.Click += new System.EventHandler(this.abteilungsTab_Click);
             // 
             // eigeneTab
             // 
-            this.eigeneTab.Location = new System.Drawing.Point(4, 25);
+            this.eigeneTab.Location = new System.Drawing.Point(4, 22);
+            this.eigeneTab.Margin = new System.Windows.Forms.Padding(2);
             this.eigeneTab.Name = "eigeneTab";
-            this.eigeneTab.Padding = new System.Windows.Forms.Padding(3);
-            this.eigeneTab.Size = new System.Drawing.Size(790, 419);
+            this.eigeneTab.Padding = new System.Windows.Forms.Padding(2);
+            this.eigeneTab.Size = new System.Drawing.Size(590, 338);
             this.eigeneTab.TabIndex = 1;
             this.eigeneTab.Text = "Eigene";
             this.eigeneTab.UseVisualStyleBackColor = true;
@@ -118,9 +121,10 @@ namespace Dateiverwaltung
             // 
             this.verwaltungsTab.Controls.Add(this.groupBox2);
             this.verwaltungsTab.Controls.Add(this.groupBox1);
-            this.verwaltungsTab.Location = new System.Drawing.Point(4, 25);
+            this.verwaltungsTab.Location = new System.Drawing.Point(4, 22);
+            this.verwaltungsTab.Margin = new System.Windows.Forms.Padding(2);
             this.verwaltungsTab.Name = "verwaltungsTab";
-            this.verwaltungsTab.Size = new System.Drawing.Size(790, 419);
+            this.verwaltungsTab.Size = new System.Drawing.Size(590, 338);
             this.verwaltungsTab.TabIndex = 2;
             this.verwaltungsTab.Text = "Verwaltung";
             this.verwaltungsTab.UseVisualStyleBackColor = true;
@@ -129,18 +133,21 @@ namespace Dateiverwaltung
             // 
             this.groupBox2.Controls.Add(this.btnEintragLoeschen);
             this.groupBox2.Controls.Add(this.dataGridView1);
-            this.groupBox2.Location = new System.Drawing.Point(6, 101);
+            this.groupBox2.Location = new System.Drawing.Point(4, 82);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(781, 315);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox2.Size = new System.Drawing.Size(586, 256);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Eintrag Löschen";
             // 
             // btnEintragLoeschen
             // 
-            this.btnEintragLoeschen.Location = new System.Drawing.Point(6, 286);
+            this.btnEintragLoeschen.Location = new System.Drawing.Point(4, 232);
+            this.btnEintragLoeschen.Margin = new System.Windows.Forms.Padding(2);
             this.btnEintragLoeschen.Name = "btnEintragLoeschen";
-            this.btnEintragLoeschen.Size = new System.Drawing.Size(105, 23);
+            this.btnEintragLoeschen.Size = new System.Drawing.Size(79, 19);
             this.btnEintragLoeschen.TabIndex = 9;
             this.btnEintragLoeschen.Text = "Löschen";
             this.btnEintragLoeschen.UseVisualStyleBackColor = true;
@@ -159,13 +166,17 @@ namespace Dateiverwaltung
             this.bloeckeColumn,
             this.mechatronikColumn,
             this.alleColumn});
-            this.dataGridView1.Location = new System.Drawing.Point(0, 22);
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 18);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(781, 258);
+            this.dataGridView1.Size = new System.Drawing.Size(586, 210);
             this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
+            this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             // 
             // loeschenColumn
             // 
@@ -173,7 +184,7 @@ namespace Dateiverwaltung
             this.loeschenColumn.HeaderText = "Löschen";
             this.loeschenColumn.MinimumWidth = 6;
             this.loeschenColumn.Name = "loeschenColumn";
-            this.loeschenColumn.Width = 64;
+            this.loeschenColumn.Width = 54;
             // 
             // nameColumn
             // 
@@ -181,7 +192,7 @@ namespace Dateiverwaltung
             this.nameColumn.HeaderText = "Name";
             this.nameColumn.MinimumWidth = 6;
             this.nameColumn.Name = "nameColumn";
-            this.nameColumn.Width = 73;
+            this.nameColumn.Width = 60;
             // 
             // dateipfadColumn
             // 
@@ -196,7 +207,7 @@ namespace Dateiverwaltung
             this.aggregateColumn.HeaderText = "Aggregate";
             this.aggregateColumn.MinimumWidth = 6;
             this.aggregateColumn.Name = "aggregateColumn";
-            this.aggregateColumn.Width = 77;
+            this.aggregateColumn.Width = 62;
             // 
             // bloeckeColumn
             // 
@@ -204,7 +215,7 @@ namespace Dateiverwaltung
             this.bloeckeColumn.HeaderText = "Blöcke";
             this.bloeckeColumn.MinimumWidth = 6;
             this.bloeckeColumn.Name = "bloeckeColumn";
-            this.bloeckeColumn.Width = 55;
+            this.bloeckeColumn.Width = 46;
             // 
             // mechatronikColumn
             // 
@@ -212,7 +223,7 @@ namespace Dateiverwaltung
             this.mechatronikColumn.HeaderText = "Mechatronik";
             this.mechatronikColumn.MinimumWidth = 6;
             this.mechatronikColumn.Name = "mechatronikColumn";
-            this.mechatronikColumn.Width = 86;
+            this.mechatronikColumn.Width = 72;
             // 
             // alleColumn
             // 
@@ -220,7 +231,7 @@ namespace Dateiverwaltung
             this.alleColumn.HeaderText = "Alle";
             this.alleColumn.MinimumWidth = 6;
             this.alleColumn.Name = "alleColumn";
-            this.alleColumn.Width = 36;
+            this.alleColumn.Width = 30;
             // 
             // groupBox1
             // 
@@ -236,9 +247,11 @@ namespace Dateiverwaltung
             this.groupBox1.Controls.Add(this.btnPfadNeuerEintrag);
             this.groupBox1.Controls.Add(this.btnNeuerEintragSichern);
             this.groupBox1.Controls.Add(this.textBoxNeuerPfad);
-            this.groupBox1.Location = new System.Drawing.Point(6, 4);
+            this.groupBox1.Location = new System.Drawing.Point(4, 3);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(781, 91);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(586, 74);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Neuer Eintrag";
@@ -246,9 +259,10 @@ namespace Dateiverwaltung
             // btnShowPasswort
             // 
             this.btnShowPasswort.Image = ((System.Drawing.Image)(resources.GetObject("btnShowPasswort.Image")));
-            this.btnShowPasswort.Location = new System.Drawing.Point(749, 51);
+            this.btnShowPasswort.Location = new System.Drawing.Point(562, 41);
+            this.btnShowPasswort.Margin = new System.Windows.Forms.Padding(2);
             this.btnShowPasswort.Name = "btnShowPasswort";
-            this.btnShowPasswort.Size = new System.Drawing.Size(32, 30);
+            this.btnShowPasswort.Size = new System.Drawing.Size(24, 24);
             this.btnShowPasswort.TabIndex = 13;
             this.btnShowPasswort.UseVisualStyleBackColor = true;
             this.btnShowPasswort.Click += new System.EventHandler(this.btnShowPasswort_Click);
@@ -256,9 +270,10 @@ namespace Dateiverwaltung
             // textBoxExcelPasswort
             // 
             this.textBoxExcelPasswort.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxExcelPasswort.Location = new System.Drawing.Point(604, 55);
+            this.textBoxExcelPasswort.Location = new System.Drawing.Point(453, 45);
+            this.textBoxExcelPasswort.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxExcelPasswort.Name = "textBoxExcelPasswort";
-            this.textBoxExcelPasswort.Size = new System.Drawing.Size(148, 22);
+            this.textBoxExcelPasswort.Size = new System.Drawing.Size(112, 20);
             this.textBoxExcelPasswort.TabIndex = 12;
             this.textBoxExcelPasswort.Text = "Passwort...";
             // 
@@ -266,9 +281,10 @@ namespace Dateiverwaltung
             // 
             this.labelFehlerhafteEingabe.AutoSize = true;
             this.labelFehlerhafteEingabe.ForeColor = System.Drawing.Color.Crimson;
-            this.labelFehlerhafteEingabe.Location = new System.Drawing.Point(6, 58);
+            this.labelFehlerhafteEingabe.Location = new System.Drawing.Point(4, 47);
+            this.labelFehlerhafteEingabe.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFehlerhafteEingabe.Name = "labelFehlerhafteEingabe";
-            this.labelFehlerhafteEingabe.Size = new System.Drawing.Size(123, 16);
+            this.labelFehlerhafteEingabe.Size = new System.Drawing.Size(99, 13);
             this.labelFehlerhafteEingabe.TabIndex = 11;
             this.labelFehlerhafteEingabe.Text = "Eingabe Fehlerhaft!";
             this.labelFehlerhafteEingabe.Visible = false;
@@ -276,18 +292,20 @@ namespace Dateiverwaltung
             // textBoxNeuerName
             // 
             this.textBoxNeuerName.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxNeuerName.Location = new System.Drawing.Point(117, 23);
+            this.textBoxNeuerName.Location = new System.Drawing.Point(88, 19);
+            this.textBoxNeuerName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxNeuerName.Name = "textBoxNeuerName";
-            this.textBoxNeuerName.Size = new System.Drawing.Size(101, 22);
+            this.textBoxNeuerName.Size = new System.Drawing.Size(77, 20);
             this.textBoxNeuerName.TabIndex = 10;
             this.textBoxNeuerName.Text = "Name...";
             // 
             // checkBoxAlle
             // 
             this.checkBoxAlle.AutoSize = true;
-            this.checkBoxAlle.Location = new System.Drawing.Point(546, 57);
+            this.checkBoxAlle.Location = new System.Drawing.Point(410, 46);
+            this.checkBoxAlle.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxAlle.Name = "checkBoxAlle";
-            this.checkBoxAlle.Size = new System.Drawing.Size(52, 20);
+            this.checkBoxAlle.Size = new System.Drawing.Size(43, 17);
             this.checkBoxAlle.TabIndex = 8;
             this.checkBoxAlle.Text = "Alle";
             this.checkBoxAlle.UseVisualStyleBackColor = true;
@@ -296,9 +314,10 @@ namespace Dateiverwaltung
             // checkBoxMechatronik
             // 
             this.checkBoxMechatronik.AutoSize = true;
-            this.checkBoxMechatronik.Location = new System.Drawing.Point(438, 57);
+            this.checkBoxMechatronik.Location = new System.Drawing.Point(328, 46);
+            this.checkBoxMechatronik.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxMechatronik.Name = "checkBoxMechatronik";
-            this.checkBoxMechatronik.Size = new System.Drawing.Size(102, 20);
+            this.checkBoxMechatronik.Size = new System.Drawing.Size(85, 17);
             this.checkBoxMechatronik.TabIndex = 7;
             this.checkBoxMechatronik.Text = "Mechatronik";
             this.checkBoxMechatronik.UseVisualStyleBackColor = true;
@@ -307,9 +326,10 @@ namespace Dateiverwaltung
             // checkBoxBloecke
             // 
             this.checkBoxBloecke.AutoSize = true;
-            this.checkBoxBloecke.Location = new System.Drawing.Point(361, 57);
+            this.checkBoxBloecke.Location = new System.Drawing.Point(271, 46);
+            this.checkBoxBloecke.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxBloecke.Name = "checkBoxBloecke";
-            this.checkBoxBloecke.Size = new System.Drawing.Size(71, 20);
+            this.checkBoxBloecke.Size = new System.Drawing.Size(59, 17);
             this.checkBoxBloecke.TabIndex = 6;
             this.checkBoxBloecke.Text = "Blöcke";
             this.checkBoxBloecke.UseVisualStyleBackColor = true;
@@ -318,9 +338,10 @@ namespace Dateiverwaltung
             // checkBoxAggregate
             // 
             this.checkBoxAggregate.AutoSize = true;
-            this.checkBoxAggregate.Location = new System.Drawing.Point(262, 57);
+            this.checkBoxAggregate.Location = new System.Drawing.Point(196, 46);
+            this.checkBoxAggregate.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxAggregate.Name = "checkBoxAggregate";
-            this.checkBoxAggregate.Size = new System.Drawing.Size(93, 20);
+            this.checkBoxAggregate.Size = new System.Drawing.Size(75, 17);
             this.checkBoxAggregate.TabIndex = 5;
             this.checkBoxAggregate.Text = "Aggregate";
             this.checkBoxAggregate.UseVisualStyleBackColor = true;
@@ -329,17 +350,19 @@ namespace Dateiverwaltung
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(134, 58);
+            this.label1.Location = new System.Drawing.Point(100, 47);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 16);
+            this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Abteilungsauswahl:";
             // 
             // btnPfadNeuerEintrag
             // 
-            this.btnPfadNeuerEintrag.Location = new System.Drawing.Point(734, 21);
+            this.btnPfadNeuerEintrag.Location = new System.Drawing.Point(550, 17);
+            this.btnPfadNeuerEintrag.Margin = new System.Windows.Forms.Padding(2);
             this.btnPfadNeuerEintrag.Name = "btnPfadNeuerEintrag";
-            this.btnPfadNeuerEintrag.Size = new System.Drawing.Size(41, 23);
+            this.btnPfadNeuerEintrag.Size = new System.Drawing.Size(31, 19);
             this.btnPfadNeuerEintrag.TabIndex = 2;
             this.btnPfadNeuerEintrag.Text = "...";
             this.btnPfadNeuerEintrag.UseVisualStyleBackColor = true;
@@ -347,9 +370,10 @@ namespace Dateiverwaltung
             // 
             // btnNeuerEintragSichern
             // 
-            this.btnNeuerEintragSichern.Location = new System.Drawing.Point(6, 22);
+            this.btnNeuerEintragSichern.Location = new System.Drawing.Point(4, 18);
+            this.btnNeuerEintragSichern.Margin = new System.Windows.Forms.Padding(2);
             this.btnNeuerEintragSichern.Name = "btnNeuerEintragSichern";
-            this.btnNeuerEintragSichern.Size = new System.Drawing.Size(105, 23);
+            this.btnNeuerEintragSichern.Size = new System.Drawing.Size(79, 19);
             this.btnNeuerEintragSichern.TabIndex = 1;
             this.btnNeuerEintragSichern.Text = "Hinzufügen";
             this.btnNeuerEintragSichern.UseVisualStyleBackColor = true;
@@ -358,17 +382,19 @@ namespace Dateiverwaltung
             // textBoxNeuerPfad
             // 
             this.textBoxNeuerPfad.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxNeuerPfad.Location = new System.Drawing.Point(224, 22);
+            this.textBoxNeuerPfad.Location = new System.Drawing.Point(168, 18);
+            this.textBoxNeuerPfad.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxNeuerPfad.Name = "textBoxNeuerPfad";
-            this.textBoxNeuerPfad.Size = new System.Drawing.Size(503, 22);
+            this.textBoxNeuerPfad.Size = new System.Drawing.Size(378, 20);
             this.textBoxNeuerPfad.TabIndex = 0;
             this.textBoxNeuerPfad.Text = "Pfad/Link...";
             // 
             // benutzerTab
             // 
-            this.benutzerTab.Location = new System.Drawing.Point(4, 25);
+            this.benutzerTab.Location = new System.Drawing.Point(4, 22);
+            this.benutzerTab.Margin = new System.Windows.Forms.Padding(2);
             this.benutzerTab.Name = "benutzerTab";
-            this.benutzerTab.Size = new System.Drawing.Size(790, 419);
+            this.benutzerTab.Size = new System.Drawing.Size(590, 338);
             this.benutzerTab.TabIndex = 3;
             this.benutzerTab.Text = "Benutzer";
             this.benutzerTab.UseVisualStyleBackColor = true;
@@ -389,11 +415,12 @@ namespace Dateiverwaltung
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 450);
+            this.ClientSize = new System.Drawing.Size(603, 366);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Dateiverwaltung";
             this.flowLayoutPanel1.ResumeLayout(false);
