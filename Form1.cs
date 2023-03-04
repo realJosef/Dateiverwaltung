@@ -345,11 +345,9 @@ namespace Dateiverwaltung
                     case "Aggregate":
                         dataGridView1[3, dataGridView1.RowCount - 1].Value = true;
                         break;
-
                     case "Blöcke":
                         dataGridView1[4, dataGridView1.RowCount - 1].Value = true;
                         break;
-
                     case "Mechatronik":
                         dataGridView1[5, dataGridView1.RowCount - 1].Value = true;
                         break;
@@ -440,32 +438,18 @@ namespace Dateiverwaltung
             savePublicDB();
         }
 
-        private void checkBoxAggregate_CheckedChanged(object sender, EventArgs e)
+        private void Group1_CheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBoxAggregate.CheckState == CheckState.Checked)
+            CheckBox selectedCheckbox = (CheckBox)sender;
+            if (selectedCheckbox.Checked)
             {
-                checkBoxBloecke.CheckState = checkBoxMechatronik.CheckState = checkBoxAlle.CheckState = CheckState.Unchecked;
-            }
-        }
-        private void checkBoxBloecke_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxBloecke.CheckState == CheckState.Checked)
-            {
-                checkBoxAggregate.CheckState = checkBoxMechatronik.CheckState = checkBoxAlle.CheckState = CheckState.Unchecked;
-            }
-        }
-        private void checkBoxMechatronik_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxMechatronik.CheckState == CheckState.Checked)
-            {
-                checkBoxAggregate.CheckState = checkBoxBloecke.CheckState = checkBoxAlle.CheckState = CheckState.Unchecked;
-            }
-        }
-        private void checkBoxAlle_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBoxAlle.CheckState == CheckState.Checked)
-            {
-                checkBoxAggregate.CheckState = checkBoxBloecke.CheckState = checkBoxMechatronik.CheckState = CheckState.Unchecked;
+                foreach (Control c in groupBox1.Controls)
+                {
+                    if (c is CheckBox cBox && cBox != selectedCheckbox)
+                    {
+                        cBox.Checked = false;
+                    }
+                }
             }
         }
 
@@ -486,6 +470,54 @@ namespace Dateiverwaltung
         {
             string json = JsonConvert.SerializeObject(publicPfadEintraege, Formatting.Indented);
             File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "Datenbank.json"), json);
+        }
+
+        private void btnReiheNachOben_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                int currentIndex = dataGridView1.SelectedRows[0].Index;
+                if (currentIndex > 0)
+                {
+                    DataGridViewRow rowToMove = dataGridView1.Rows[currentIndex];
+                    PfadEintrag publicPfadEintragToMove = publicPfadEintraege[currentIndex];
+                    publicPfadEintraege.RemoveAt(currentIndex);
+                    publicPfadEintraege.Insert(currentIndex - 1, publicPfadEintragToMove);
+                    dataGridView1.Rows.RemoveAt(currentIndex);
+                    dataGridView1.Rows.Insert(currentIndex - 1, rowToMove);
+                    dataGridView1.Rows[currentIndex - 1].Selected = true;
+                    updateButtonView();
+                }
+            }
+        }
+
+        private void btnReiheNachUnten_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                int currentIndex = dataGridView1.SelectedRows[0].Index;
+                if (currentIndex < dataGridView1.Rows.Count - 1)
+                {
+                    DataGridViewRow rowToMove = dataGridView1.Rows[currentIndex];
+                    PfadEintrag publicPfadEintragToMove = publicPfadEintraege[currentIndex];
+                    publicPfadEintraege.RemoveAt(currentIndex);
+                    publicPfadEintraege.Insert(currentIndex + 1, publicPfadEintragToMove);
+                    dataGridView1.Rows.RemoveAt(currentIndex);
+                    dataGridView1.Rows.Insert(currentIndex + 1, rowToMove);
+                    dataGridView1.Rows[currentIndex + 1].Selected = true;
+                    updateButtonView();
+                }
+            }
+        }
+        private void updateButtonView()
+        {
+            foreach (Button button in abteilungsTab.Controls.OfType<Button>().ToList())
+            {
+                abteilungsTab.Controls.Remove(button);
+                button.Dispose();
+            }
+            savePublicDB();
+            createButtonView();
         }
     }
 }

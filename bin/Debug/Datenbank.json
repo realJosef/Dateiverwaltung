@@ -6,12 +6,6 @@
     "Passwort": null
   },
   {
-    "Name": "Datei2",
-    "Dateipfad": "C:/Dokumente/Datei2.txt",
-    "Abteilung": "Blöcke",
-    "Passwort": null
-  },
-  {
     "Name": "Datei3",
     "Dateipfad": "C:/Dokumente/Datei3.txt",
     "Abteilung": "Mechatronik",
@@ -30,15 +24,15 @@
     "Passwort": null
   },
   {
-    "Name": "test1",
-    "Dateipfad": "test1",
-    "Abteilung": "Mechatronik",
+    "Name": "Datei2",
+    "Dateipfad": "C:/Dokumente/Datei2.txt",
+    "Abteilung": "Blöcke",
     "Passwort": null
   },
   {
-    "Name": "Dauerlauf",
-    "Dateipfad": "\\\\de-szr-wwshare\\wwshare\\_Austausch_HFL-HMH\\Planung\\Dauerlaufplanung\\Dauerlaufplanung.xlsb",
-    "Abteilung": "Alle",
+    "Name": "test1",
+    "Dateipfad": "test1",
+    "Abteilung": "Aggregate",
     "Passwort": null
   }
 ]
