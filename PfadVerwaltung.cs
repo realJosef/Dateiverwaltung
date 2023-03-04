@@ -6,12 +6,27 @@ using System.Threading.Tasks;
 
 namespace Dateiverwaltung
 {
-    public class PfadEintrag
+    public class publicPfadEintrag
     {
 
         public string Name { get; set; }
         public string Dateipfad { get; set; }
         public string Abteilung { get; set; }
         public string Passwort { get; set; }
+    }
+
+    public class privatPfadEintrag
+    {
+
+        public string Name { get; set; }
+        public string Dateipfad { get; set; }
+        public string Abteilung { get; set; }
+        public string Passwort { get; set; }
+    }
+
+    public class config
+    {
+        public string Abteilung { get; set; }
+        public string privatDBPath { get; set; }
     }
 }

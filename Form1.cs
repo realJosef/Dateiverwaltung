@@ -11,13 +11,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json;
+
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 // Latest Version
 namespace Dateiverwaltung
 {
     public partial class Form1 : Form
     {
-        List<PfadEintrag> publicPfadEintraege = JsonConvert.DeserializeObject<List<PfadEintrag>>(File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "Datenbank.json")).ToString());
+        List<publicPfadEintrag> publicPfadEintraege;
+        List<privatPfadEintrag> privatPfadEintraege;
+        string publicDBPath = Path.Combine(Environment.CurrentDirectory).ToString();
+        string publicDBName = "publicDB.json";
+
+        string privatDBPath = "C:\\Dateiverwaltung";
+        string privatDBName = "privatDB.json";
 
         bool neuerPfadWaterMarkActive = true;
         bool neuerNameWaterMarkActive = true;
@@ -25,9 +32,43 @@ namespace Dateiverwaltung
         public Form1()
         {
             InitializeComponent();
-            createGridView1();
-            createButtonView();
-       
+
+            try
+            {
+                publicPfadEintraege = JsonConvert.DeserializeObject<List<publicPfadEintrag>>(File.ReadAllText(string.Join(publicDBPath, publicDBName)));
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Datei " + publicDBName + " in Pfad " + "'" + publicDBPath + "'" + " nicht vorhanden!");
+                throw;
+            }
+
+            try
+            {
+                if (File.Exists(string.Join("\\", privatDBPath, privatDBName)))
+                {
+                    privatPfadEintraege = JsonConvert.DeserializeObject<List<privatPfadEintrag>>(File.ReadAllText(string.Join("\\", privatDBPath, privatDBName)));
+                }
+                else
+                {
+                    btnCreatePrivatDB.Visible = true;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Datei " + privatDBName + " in Pfad " + "'" + privatDBPath + "'" + " nicht vorhanden!");
+                throw;
+            }
+
+            createPublicGridView();
+            createPublicButtonView();
+
+            displayUserName.Text = string.Join("\\", Environment.UserDomainName, Environment.UserName);
+            displayComputerName.Text = Environment.MachineName;
+
+            textBoxPublicDBPath.Text = string.Join("\\", publicDBPath, publicDBName);
+            textBoxPrivatDBPath.Text = string.Join("\\", privatDBPath, privatDBName);
+
             textBoxNeuerPfad.GotFocus += (source, e) =>
             {
                 if (neuerPfadWaterMarkActive && textBoxNeuerPfad.Text == "Pfad/Link...")
@@ -90,7 +131,7 @@ namespace Dateiverwaltung
             };
         }
 
-        private void createGridView1()
+        private void createPublicGridView()
         {
             //Row 0 Löschen 1 Name 2 Dateipfad 3 Aggregate 4 Blöcke 5 Mechatronik 6 Alle
             for (int i = 0; i < publicPfadEintraege.Count; i++)
@@ -119,7 +160,7 @@ namespace Dateiverwaltung
             }
         }
 
-        private void createButtonView()
+        private void createPublicButtonView()
         {
             int buttonWidth = 130;  // Breite des Buttons
             int buttonHeight = 45;  // Höhe des Buttons
@@ -150,7 +191,7 @@ namespace Dateiverwaltung
         private void Button_Click(object sender, EventArgs e)
         {
             Button button = sender as Button;
-            PfadEintrag passwortEintrag = publicPfadEintraege.FirstOrDefault(x => x.Name == button.Text);
+            publicPfadEintrag passwortEintrag = publicPfadEintraege.FirstOrDefault(x => x.Name == button.Text);
             if (passwortEintrag.Passwort != null)
             {
                 Excel.Application excel = new Excel.Application();
@@ -291,7 +332,7 @@ namespace Dateiverwaltung
             }
         }
 
-        private void btnPfadNeuerEintrag_Click(object sender, EventArgs e)
+        private void btnPublicPfadNeuerEintrag_Click(object sender, EventArgs e)
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -300,7 +341,7 @@ namespace Dateiverwaltung
             }
         }
 
-        private void btnNeuerEintragSichern_Click(object sender, EventArgs e)
+        private void btnNeuerPublicEintragSichern_Click(object sender, EventArgs e)
         {
             if (textBoxNeuerName.Text != "Name..." && textBoxNeuerName.Text != "" && textBoxNeuerPfad.Text != "Pfad/Link..." && textBoxNeuerPfad.Text != "" && checkBoxAggregate.Checked | checkBoxBloecke.Checked | checkBoxMechatronik.Checked | checkBoxAlle.Checked)
             {
@@ -324,7 +365,7 @@ namespace Dateiverwaltung
                     neuesExcelPasswort = Convert.ToBase64String(Encoding.UTF8.GetBytes(encryptedExcelPasswort));
                 }
 
-                PfadEintrag neuerEintrag = new PfadEintrag
+                publicPfadEintrag neuerEintrag = new publicPfadEintrag
                 {
                     Dateipfad = textBoxNeuerPfad.Text,
                     Name = textBoxNeuerName.Text,
@@ -361,7 +402,7 @@ namespace Dateiverwaltung
                 neuerNameWaterMarkActive = true;
                 textBoxNeuerName.Text = "Name...";
                 textBoxNeuerName.ForeColor = Color.Gray;
-                createButtonView();
+                createPublicButtonView();
             }
             else
             {
@@ -388,7 +429,7 @@ namespace Dateiverwaltung
             }
         }
 
-        private void btnEintragLoeschen_Click(object sender, EventArgs e)
+        private void btnPublicEintragLoeschen_Click(object sender, EventArgs e)
         {
             int gridRowCount = dataGridView1.Rows.Count;
             bool[] toDelete = new bool[gridRowCount];
@@ -469,7 +510,7 @@ namespace Dateiverwaltung
         void savePublicDB()
         {
             string json = JsonConvert.SerializeObject(publicPfadEintraege, Formatting.Indented);
-            File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "Datenbank.json"), json);
+            File.WriteAllText(string.Join(publicDBPath, publicDBName), json);
         }
 
         private void btnReiheNachOben_Click(object sender, EventArgs e)
@@ -480,7 +521,7 @@ namespace Dateiverwaltung
                 if (currentIndex > 0)
                 {
                     DataGridViewRow rowToMove = dataGridView1.Rows[currentIndex];
-                    PfadEintrag publicPfadEintragToMove = publicPfadEintraege[currentIndex];
+                    publicPfadEintrag publicPfadEintragToMove = publicPfadEintraege[currentIndex];
                     publicPfadEintraege.RemoveAt(currentIndex);
                     publicPfadEintraege.Insert(currentIndex - 1, publicPfadEintragToMove);
                     dataGridView1.Rows.RemoveAt(currentIndex);
@@ -499,7 +540,7 @@ namespace Dateiverwaltung
                 if (currentIndex < dataGridView1.Rows.Count - 1)
                 {
                     DataGridViewRow rowToMove = dataGridView1.Rows[currentIndex];
-                    PfadEintrag publicPfadEintragToMove = publicPfadEintraege[currentIndex];
+                    publicPfadEintrag publicPfadEintragToMove = publicPfadEintraege[currentIndex];
                     publicPfadEintraege.RemoveAt(currentIndex);
                     publicPfadEintraege.Insert(currentIndex + 1, publicPfadEintragToMove);
                     dataGridView1.Rows.RemoveAt(currentIndex);
@@ -517,7 +558,7 @@ namespace Dateiverwaltung
                 button.Dispose();
             }
             savePublicDB();
-            createButtonView();
+            createPublicButtonView();
         }
     }
 }

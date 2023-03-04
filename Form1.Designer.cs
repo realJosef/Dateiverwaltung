@@ -39,7 +39,9 @@ namespace Dateiverwaltung
             this.eigeneTab = new System.Windows.Forms.TabPage();
             this.verwaltungsTab = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnEintragLoeschen = new System.Windows.Forms.Button();
+            this.btnReiheNachUnten = new System.Windows.Forms.Button();
+            this.btnReiheNachOben = new System.Windows.Forms.Button();
+            this.btnPublicEintragLoeschen = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.loeschenColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,20 +60,31 @@ namespace Dateiverwaltung
             this.labelFehlerhafteEingabe = new System.Windows.Forms.Label();
             this.textBoxNeuerName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnPfadNeuerEintrag = new System.Windows.Forms.Button();
-            this.btnNeuerEintragSichern = new System.Windows.Forms.Button();
+            this.btnPublicPfadNeuerEintrag = new System.Windows.Forms.Button();
+            this.btnNeuerPublicEintragSichern = new System.Windows.Forms.Button();
             this.textBoxNeuerPfad = new System.Windows.Forms.TextBox();
+            this.userTab = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.textBoxPrivatDBPath = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBoxPublicDBPath = new System.Windows.Forms.TextBox();
+            this.displayComputerName = new System.Windows.Forms.Label();
+            this.displayUserName = new System.Windows.Forms.Label();
+            this.labelComputerName = new System.Windows.Forms.Label();
+            this.labelUserName = new System.Windows.Forms.Label();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnReiheNachOben = new System.Windows.Forms.Button();
-            this.btnReiheNachUnten = new System.Windows.Forms.Button();
+            this.btnCreatePrivatDB = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.verwaltungsTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            this.userTab.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -88,6 +101,7 @@ namespace Dateiverwaltung
             this.tabControl1.Controls.Add(this.abteilungsTab);
             this.tabControl1.Controls.Add(this.eigeneTab);
             this.tabControl1.Controls.Add(this.verwaltungsTab);
+            this.tabControl1.Controls.Add(this.userTab);
             this.tabControl1.Location = new System.Drawing.Point(3, 2);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabControl1.Name = "tabControl1";
@@ -133,7 +147,7 @@ namespace Dateiverwaltung
             // 
             this.groupBox2.Controls.Add(this.btnReiheNachUnten);
             this.groupBox2.Controls.Add(this.btnReiheNachOben);
-            this.groupBox2.Controls.Add(this.btnEintragLoeschen);
+            this.groupBox2.Controls.Add(this.btnPublicEintragLoeschen);
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Location = new System.Drawing.Point(5, 101);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -144,16 +158,38 @@ namespace Dateiverwaltung
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Eintrag Löschen";
             // 
-            // btnEintragLoeschen
+            // btnReiheNachUnten
             // 
-            this.btnEintragLoeschen.Location = new System.Drawing.Point(669, 288);
-            this.btnEintragLoeschen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnEintragLoeschen.Name = "btnEintragLoeschen";
-            this.btnEintragLoeschen.Size = new System.Drawing.Size(105, 23);
-            this.btnEintragLoeschen.TabIndex = 9;
-            this.btnEintragLoeschen.Text = "Löschen";
-            this.btnEintragLoeschen.UseVisualStyleBackColor = true;
-            this.btnEintragLoeschen.Click += new System.EventHandler(this.btnEintragLoeschen_Click);
+            this.btnReiheNachUnten.Location = new System.Drawing.Point(117, 288);
+            this.btnReiheNachUnten.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReiheNachUnten.Name = "btnReiheNachUnten";
+            this.btnReiheNachUnten.Size = new System.Drawing.Size(105, 23);
+            this.btnReiheNachUnten.TabIndex = 11;
+            this.btnReiheNachUnten.Text = "Nach Unten";
+            this.btnReiheNachUnten.UseVisualStyleBackColor = true;
+            this.btnReiheNachUnten.Click += new System.EventHandler(this.btnReiheNachUnten_Click);
+            // 
+            // btnReiheNachOben
+            // 
+            this.btnReiheNachOben.Location = new System.Drawing.Point(6, 288);
+            this.btnReiheNachOben.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnReiheNachOben.Name = "btnReiheNachOben";
+            this.btnReiheNachOben.Size = new System.Drawing.Size(105, 23);
+            this.btnReiheNachOben.TabIndex = 10;
+            this.btnReiheNachOben.Text = "Nach Oben";
+            this.btnReiheNachOben.UseVisualStyleBackColor = true;
+            this.btnReiheNachOben.Click += new System.EventHandler(this.btnReiheNachOben_Click);
+            // 
+            // btnPublicEintragLoeschen
+            // 
+            this.btnPublicEintragLoeschen.Location = new System.Drawing.Point(669, 288);
+            this.btnPublicEintragLoeschen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPublicEintragLoeschen.Name = "btnPublicEintragLoeschen";
+            this.btnPublicEintragLoeschen.Size = new System.Drawing.Size(105, 23);
+            this.btnPublicEintragLoeschen.TabIndex = 9;
+            this.btnPublicEintragLoeschen.Text = "Löschen";
+            this.btnPublicEintragLoeschen.UseVisualStyleBackColor = true;
+            this.btnPublicEintragLoeschen.Click += new System.EventHandler(this.btnPublicEintragLoeschen_Click);
             // 
             // dataGridView1
             // 
@@ -246,8 +282,8 @@ namespace Dateiverwaltung
             this.groupBox1.Controls.Add(this.labelFehlerhafteEingabe);
             this.groupBox1.Controls.Add(this.textBoxNeuerName);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.btnPfadNeuerEintrag);
-            this.groupBox1.Controls.Add(this.btnNeuerEintragSichern);
+            this.groupBox1.Controls.Add(this.btnPublicPfadNeuerEintrag);
+            this.groupBox1.Controls.Add(this.btnNeuerPublicEintragSichern);
             this.groupBox1.Controls.Add(this.textBoxNeuerPfad);
             this.groupBox1.Location = new System.Drawing.Point(5, 4);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -357,27 +393,27 @@ namespace Dateiverwaltung
             this.label1.TabIndex = 4;
             this.label1.Text = "Abteilungsauswahl:";
             // 
-            // btnPfadNeuerEintrag
+            // btnPublicPfadNeuerEintrag
             // 
-            this.btnPfadNeuerEintrag.Location = new System.Drawing.Point(733, 21);
-            this.btnPfadNeuerEintrag.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnPfadNeuerEintrag.Name = "btnPfadNeuerEintrag";
-            this.btnPfadNeuerEintrag.Size = new System.Drawing.Size(41, 23);
-            this.btnPfadNeuerEintrag.TabIndex = 2;
-            this.btnPfadNeuerEintrag.Text = "...";
-            this.btnPfadNeuerEintrag.UseVisualStyleBackColor = true;
-            this.btnPfadNeuerEintrag.Click += new System.EventHandler(this.btnPfadNeuerEintrag_Click);
+            this.btnPublicPfadNeuerEintrag.Location = new System.Drawing.Point(733, 21);
+            this.btnPublicPfadNeuerEintrag.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnPublicPfadNeuerEintrag.Name = "btnPublicPfadNeuerEintrag";
+            this.btnPublicPfadNeuerEintrag.Size = new System.Drawing.Size(41, 23);
+            this.btnPublicPfadNeuerEintrag.TabIndex = 2;
+            this.btnPublicPfadNeuerEintrag.Text = "...";
+            this.btnPublicPfadNeuerEintrag.UseVisualStyleBackColor = true;
+            this.btnPublicPfadNeuerEintrag.Click += new System.EventHandler(this.btnPublicPfadNeuerEintrag_Click);
             // 
-            // btnNeuerEintragSichern
+            // btnNeuerPublicEintragSichern
             // 
-            this.btnNeuerEintragSichern.Location = new System.Drawing.Point(5, 22);
-            this.btnNeuerEintragSichern.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnNeuerEintragSichern.Name = "btnNeuerEintragSichern";
-            this.btnNeuerEintragSichern.Size = new System.Drawing.Size(105, 23);
-            this.btnNeuerEintragSichern.TabIndex = 1;
-            this.btnNeuerEintragSichern.Text = "Hinzufügen";
-            this.btnNeuerEintragSichern.UseVisualStyleBackColor = true;
-            this.btnNeuerEintragSichern.Click += new System.EventHandler(this.btnNeuerEintragSichern_Click);
+            this.btnNeuerPublicEintragSichern.Location = new System.Drawing.Point(5, 22);
+            this.btnNeuerPublicEintragSichern.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNeuerPublicEintragSichern.Name = "btnNeuerPublicEintragSichern";
+            this.btnNeuerPublicEintragSichern.Size = new System.Drawing.Size(105, 23);
+            this.btnNeuerPublicEintragSichern.TabIndex = 1;
+            this.btnNeuerPublicEintragSichern.Text = "Hinzufügen";
+            this.btnNeuerPublicEintragSichern.UseVisualStyleBackColor = true;
+            this.btnNeuerPublicEintragSichern.Click += new System.EventHandler(this.btnNeuerPublicEintragSichern_Click);
             // 
             // textBoxNeuerPfad
             // 
@@ -388,6 +424,92 @@ namespace Dateiverwaltung
             this.textBoxNeuerPfad.Size = new System.Drawing.Size(503, 22);
             this.textBoxNeuerPfad.TabIndex = 0;
             this.textBoxNeuerPfad.Text = "Pfad/Link...";
+            // 
+            // userTab
+            // 
+            this.userTab.Controls.Add(this.groupBox4);
+            this.userTab.Controls.Add(this.groupBox3);
+            this.userTab.Controls.Add(this.displayComputerName);
+            this.userTab.Controls.Add(this.displayUserName);
+            this.userTab.Controls.Add(this.labelComputerName);
+            this.userTab.Controls.Add(this.labelUserName);
+            this.userTab.Location = new System.Drawing.Point(4, 25);
+            this.userTab.Name = "userTab";
+            this.userTab.Size = new System.Drawing.Size(789, 419);
+            this.userTab.TabIndex = 3;
+            this.userTab.Text = "User";
+            this.userTab.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnCreatePrivatDB);
+            this.groupBox4.Controls.Add(this.textBoxPrivatDBPath);
+            this.groupBox4.Location = new System.Drawing.Point(7, 133);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(779, 85);
+            this.groupBox4.TabIndex = 6;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Privater Datenbank Pfad";
+            // 
+            // textBoxPrivatDBPath
+            // 
+            this.textBoxPrivatDBPath.Location = new System.Drawing.Point(7, 22);
+            this.textBoxPrivatDBPath.Name = "textBoxPrivatDBPath";
+            this.textBoxPrivatDBPath.Size = new System.Drawing.Size(766, 22);
+            this.textBoxPrivatDBPath.TabIndex = 0;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.textBoxPublicDBPath);
+            this.groupBox3.Location = new System.Drawing.Point(6, 69);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(779, 58);
+            this.groupBox3.TabIndex = 5;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Öffentlicher Datenbank Pfad";
+            // 
+            // textBoxPublicDBPath
+            // 
+            this.textBoxPublicDBPath.Location = new System.Drawing.Point(7, 22);
+            this.textBoxPublicDBPath.Name = "textBoxPublicDBPath";
+            this.textBoxPublicDBPath.Size = new System.Drawing.Size(766, 22);
+            this.textBoxPublicDBPath.TabIndex = 0;
+            // 
+            // displayComputerName
+            // 
+            this.displayComputerName.AutoSize = true;
+            this.displayComputerName.Location = new System.Drawing.Point(128, 35);
+            this.displayComputerName.Name = "displayComputerName";
+            this.displayComputerName.Size = new System.Drawing.Size(146, 16);
+            this.displayComputerName.TabIndex = 4;
+            this.displayComputerName.Text = "displayComputerName";
+            // 
+            // displayUserName
+            // 
+            this.displayUserName.AutoSize = true;
+            this.displayUserName.Location = new System.Drawing.Point(128, 9);
+            this.displayUserName.Name = "displayUserName";
+            this.displayUserName.Size = new System.Drawing.Size(117, 16);
+            this.displayUserName.TabIndex = 3;
+            this.displayUserName.Text = "displayUserName";
+            // 
+            // labelComputerName
+            // 
+            this.labelComputerName.AutoSize = true;
+            this.labelComputerName.Location = new System.Drawing.Point(10, 35);
+            this.labelComputerName.Name = "labelComputerName";
+            this.labelComputerName.Size = new System.Drawing.Size(105, 16);
+            this.labelComputerName.TabIndex = 2;
+            this.labelComputerName.Text = "ComputerName:";
+            // 
+            // labelUserName
+            // 
+            this.labelUserName.AutoSize = true;
+            this.labelUserName.Location = new System.Drawing.Point(10, 9);
+            this.labelUserName.Name = "labelUserName";
+            this.labelUserName.Size = new System.Drawing.Size(76, 16);
+            this.labelUserName.TabIndex = 1;
+            this.labelUserName.Text = "UserName:";
             // 
             // settingsToolStripMenuItem
             // 
@@ -403,27 +525,15 @@ namespace Dateiverwaltung
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // btnReiheNachOben
+            // btnCreatePrivatDB
             // 
-            this.btnReiheNachOben.Location = new System.Drawing.Point(6, 288);
-            this.btnReiheNachOben.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnReiheNachOben.Name = "btnReiheNachOben";
-            this.btnReiheNachOben.Size = new System.Drawing.Size(105, 23);
-            this.btnReiheNachOben.TabIndex = 10;
-            this.btnReiheNachOben.Text = "Nach Oben";
-            this.btnReiheNachOben.UseVisualStyleBackColor = true;
-            this.btnReiheNachOben.Click += new System.EventHandler(this.btnReiheNachOben_Click);
-            // 
-            // btnReiheNachUnten
-            // 
-            this.btnReiheNachUnten.Location = new System.Drawing.Point(117, 288);
-            this.btnReiheNachUnten.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnReiheNachUnten.Name = "btnReiheNachUnten";
-            this.btnReiheNachUnten.Size = new System.Drawing.Size(105, 23);
-            this.btnReiheNachUnten.TabIndex = 11;
-            this.btnReiheNachUnten.Text = "Nach Unten";
-            this.btnReiheNachUnten.UseVisualStyleBackColor = true;
-            this.btnReiheNachUnten.Click += new System.EventHandler(this.btnReiheNachUnten_Click);
+            this.btnCreatePrivatDB.Location = new System.Drawing.Point(7, 51);
+            this.btnCreatePrivatDB.Name = "btnCreatePrivatDB";
+            this.btnCreatePrivatDB.Size = new System.Drawing.Size(125, 23);
+            this.btnCreatePrivatDB.TabIndex = 1;
+            this.btnCreatePrivatDB.Text = "Erstelle Datei";
+            this.btnCreatePrivatDB.UseVisualStyleBackColor = true;
+            this.btnCreatePrivatDB.Visible = false;
             // 
             // Form1
             // 
@@ -442,6 +552,12 @@ namespace Dateiverwaltung
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.userTab.ResumeLayout(false);
+            this.userTab.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -456,11 +572,11 @@ namespace Dateiverwaltung
         private System.Windows.Forms.TabPage eigeneTab;
         private System.Windows.Forms.TabPage verwaltungsTab;
         private GroupBox groupBox1;
-        private Button btnPfadNeuerEintrag;
-        private Button btnNeuerEintragSichern;
+        private Button btnPublicPfadNeuerEintrag;
+        private Button btnNeuerPublicEintragSichern;
         private TextBox textBoxNeuerPfad;
         private GroupBox groupBox2;
-        private Button btnEintragLoeschen;
+        private Button btnPublicEintragLoeschen;
         private DataGridView dataGridView1;
         private DataGridViewCheckBoxColumn loeschenColumn;
         private DataGridViewTextBoxColumn nameColumn;
@@ -481,6 +597,16 @@ namespace Dateiverwaltung
         private Label label1;
         private Button btnReiheNachUnten;
         private Button btnReiheNachOben;
+        private TabPage userTab;
+        private Label labelComputerName;
+        private Label labelUserName;
+        private Label displayUserName;
+        private Label displayComputerName;
+        private GroupBox groupBox3;
+        private TextBox textBoxPublicDBPath;
+        private GroupBox groupBox4;
+        private TextBox textBoxPrivatDBPath;
+        private Button btnCreatePrivatDB;
     }
 }
 
