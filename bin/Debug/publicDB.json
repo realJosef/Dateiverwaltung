@@ -36,14 +36,8 @@
     "Passwort": null
   },
   {
-    "Name": "Google",
-    "Dateipfad": "www.google.de",
-    "Abteilung": "Alle",
-    "Passwort": null
-  },
-  {
-    "Name": "ventile",
-    "Dateipfad": "ventile",
+    "Name": "google",
+    "Dateipfad": "google",
     "Abteilung": "Ventile",
     "Passwort": null
   }

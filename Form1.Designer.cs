@@ -36,14 +36,22 @@ namespace Dateiverwaltung
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.abteilungsTab = new System.Windows.Forms.TabPage();
-            this.eigeneTab = new System.Windows.Forms.TabPage();
             this.verwaltungsTab = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnReiheNachUnten = new System.Windows.Forms.Button();
             this.btnReiheNachOben = new System.Windows.Forms.Button();
             this.btnPublicEintragLoeschen = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.loeschenColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateipfadColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aggregateColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.bloeckeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.mechatronikColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ventileColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.alleColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBoxVentile = new System.Windows.Forms.CheckBox();
             this.checkBoxAlle = new System.Windows.Forms.CheckBox();
             this.checkBoxMechatronik = new System.Windows.Forms.CheckBox();
             this.checkBoxBloecke = new System.Windows.Forms.CheckBox();
@@ -70,15 +78,6 @@ namespace Dateiverwaltung
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.loeschenColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.nameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateipfadColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.aggregateColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.bloeckeColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.mechatronikColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ventileColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.alleColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.checkBoxVentile = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.verwaltungsTab.SuspendLayout();
@@ -102,7 +101,6 @@ namespace Dateiverwaltung
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.abteilungsTab);
-            this.tabControl1.Controls.Add(this.eigeneTab);
             this.tabControl1.Controls.Add(this.verwaltungsTab);
             this.tabControl1.Controls.Add(this.userTab);
             this.tabControl1.Location = new System.Drawing.Point(3, 2);
@@ -122,17 +120,6 @@ namespace Dateiverwaltung
             this.abteilungsTab.TabIndex = 0;
             this.abteilungsTab.Text = "Abteilung";
             this.abteilungsTab.UseVisualStyleBackColor = true;
-            // 
-            // eigeneTab
-            // 
-            this.eigeneTab.Location = new System.Drawing.Point(4, 25);
-            this.eigeneTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.eigeneTab.Name = "eigeneTab";
-            this.eigeneTab.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.eigeneTab.Size = new System.Drawing.Size(789, 419);
-            this.eigeneTab.TabIndex = 1;
-            this.eigeneTab.Text = "Eigene";
-            this.eigeneTab.UseVisualStyleBackColor = true;
             // 
             // verwaltungsTab
             // 
@@ -220,6 +207,70 @@ namespace Dateiverwaltung
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             // 
+            // loeschenColumn
+            // 
+            this.loeschenColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.loeschenColumn.HeaderText = "Löschen";
+            this.loeschenColumn.MinimumWidth = 6;
+            this.loeschenColumn.Name = "loeschenColumn";
+            this.loeschenColumn.Width = 64;
+            // 
+            // nameColumn
+            // 
+            this.nameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.nameColumn.HeaderText = "Name";
+            this.nameColumn.MinimumWidth = 6;
+            this.nameColumn.Name = "nameColumn";
+            this.nameColumn.Width = 73;
+            // 
+            // dateipfadColumn
+            // 
+            this.dateipfadColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dateipfadColumn.HeaderText = "Dateipfad";
+            this.dateipfadColumn.MinimumWidth = 6;
+            this.dateipfadColumn.Name = "dateipfadColumn";
+            // 
+            // aggregateColumn
+            // 
+            this.aggregateColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.aggregateColumn.HeaderText = "Aggregate";
+            this.aggregateColumn.MinimumWidth = 6;
+            this.aggregateColumn.Name = "aggregateColumn";
+            this.aggregateColumn.Width = 77;
+            // 
+            // bloeckeColumn
+            // 
+            this.bloeckeColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.bloeckeColumn.HeaderText = "Blöcke";
+            this.bloeckeColumn.MinimumWidth = 6;
+            this.bloeckeColumn.Name = "bloeckeColumn";
+            this.bloeckeColumn.Width = 55;
+            // 
+            // mechatronikColumn
+            // 
+            this.mechatronikColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.mechatronikColumn.HeaderText = "Mechatronik";
+            this.mechatronikColumn.MinimumWidth = 6;
+            this.mechatronikColumn.Name = "mechatronikColumn";
+            this.mechatronikColumn.Width = 86;
+            // 
+            // ventileColumn
+            // 
+            this.ventileColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.ventileColumn.HeaderText = "Ventile";
+            this.ventileColumn.MinimumWidth = 6;
+            this.ventileColumn.Name = "ventileColumn";
+            this.ventileColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ventileColumn.Width = 54;
+            // 
+            // alleColumn
+            // 
+            this.alleColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.alleColumn.HeaderText = "Alle";
+            this.alleColumn.MinimumWidth = 6;
+            this.alleColumn.Name = "alleColumn";
+            this.alleColumn.Width = 36;
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.checkBoxVentile);
@@ -242,6 +293,17 @@ namespace Dateiverwaltung
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Neuer Eintrag";
+            // 
+            // checkBoxVentile
+            // 
+            this.checkBoxVentile.AutoSize = true;
+            this.checkBoxVentile.Location = new System.Drawing.Point(361, 57);
+            this.checkBoxVentile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBoxVentile.Name = "checkBoxVentile";
+            this.checkBoxVentile.Size = new System.Drawing.Size(70, 20);
+            this.checkBoxVentile.TabIndex = 18;
+            this.checkBoxVentile.Text = "Ventile";
+            this.checkBoxVentile.UseVisualStyleBackColor = true;
             // 
             // checkBoxAlle
             // 
@@ -493,81 +555,6 @@ namespace Dateiverwaltung
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // loeschenColumn
-            // 
-            this.loeschenColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.loeschenColumn.HeaderText = "Löschen";
-            this.loeschenColumn.MinimumWidth = 6;
-            this.loeschenColumn.Name = "loeschenColumn";
-            this.loeschenColumn.Width = 64;
-            // 
-            // nameColumn
-            // 
-            this.nameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.nameColumn.HeaderText = "Name";
-            this.nameColumn.MinimumWidth = 6;
-            this.nameColumn.Name = "nameColumn";
-            this.nameColumn.Width = 73;
-            // 
-            // dateipfadColumn
-            // 
-            this.dateipfadColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dateipfadColumn.HeaderText = "Dateipfad";
-            this.dateipfadColumn.MinimumWidth = 6;
-            this.dateipfadColumn.Name = "dateipfadColumn";
-            // 
-            // aggregateColumn
-            // 
-            this.aggregateColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.aggregateColumn.HeaderText = "Aggregate";
-            this.aggregateColumn.MinimumWidth = 6;
-            this.aggregateColumn.Name = "aggregateColumn";
-            this.aggregateColumn.Width = 77;
-            // 
-            // bloeckeColumn
-            // 
-            this.bloeckeColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.bloeckeColumn.HeaderText = "Blöcke";
-            this.bloeckeColumn.MinimumWidth = 6;
-            this.bloeckeColumn.Name = "bloeckeColumn";
-            this.bloeckeColumn.Width = 55;
-            // 
-            // mechatronikColumn
-            // 
-            this.mechatronikColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.mechatronikColumn.HeaderText = "Mechatronik";
-            this.mechatronikColumn.MinimumWidth = 6;
-            this.mechatronikColumn.Name = "mechatronikColumn";
-            this.mechatronikColumn.Width = 86;
-            // 
-            // ventileColumn
-            // 
-            this.ventileColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.ventileColumn.HeaderText = "Ventile";
-            this.ventileColumn.MinimumWidth = 6;
-            this.ventileColumn.Name = "ventileColumn";
-            this.ventileColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ventileColumn.Width = 54;
-            // 
-            // alleColumn
-            // 
-            this.alleColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.alleColumn.HeaderText = "Alle";
-            this.alleColumn.MinimumWidth = 6;
-            this.alleColumn.Name = "alleColumn";
-            this.alleColumn.Width = 36;
-            // 
-            // checkBoxVentile
-            // 
-            this.checkBoxVentile.AutoSize = true;
-            this.checkBoxVentile.Location = new System.Drawing.Point(361, 57);
-            this.checkBoxVentile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.checkBoxVentile.Name = "checkBoxVentile";
-            this.checkBoxVentile.Size = new System.Drawing.Size(70, 20);
-            this.checkBoxVentile.TabIndex = 18;
-            this.checkBoxVentile.Text = "Ventile";
-            this.checkBoxVentile.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -602,7 +589,6 @@ namespace Dateiverwaltung
         private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage abteilungsTab;
-        private System.Windows.Forms.TabPage eigeneTab;
         private System.Windows.Forms.TabPage verwaltungsTab;
         private GroupBox groupBox1;
         private Button btnPublicPfadNeuerEintrag;

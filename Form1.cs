@@ -21,6 +21,7 @@ namespace Dateiverwaltung
     {
         List<publicPfadEintrag> publicPfadEintraege;
         List<privatPfadEintrag> privatPfadEintraege;
+        List<publicPfadEintrag> publicPfadEintraegeToDisplay = new List<publicPfadEintrag>();
         List<config> configEintraege = new List<config>();
 
         string configPath = "C:\\Dateiverwaltung";
@@ -99,6 +100,7 @@ namespace Dateiverwaltung
             }
 
             comboBoxAbteilungsauswahl.Items.AddRange(abteilungsAuswahl);
+            comboBoxAbteilungsauswahl.SelectedItem = configEintraege[0].Abteilung;
             
             createPublicGridView();
             createPublicButtonView();
@@ -175,6 +177,7 @@ namespace Dateiverwaltung
         {
             configEintraege[0].Abteilung = comboBoxAbteilungsauswahl.SelectedItem.ToString();
             saveConfig();
+            createPublicButtonView();
         }
 
             private void createPublicGridView()
@@ -214,12 +217,18 @@ namespace Dateiverwaltung
             int buttonWidth = 130;  // Breite des Buttons
             int buttonHeight = 45;  // Höhe des Buttons
             int spacing = 10;       // Abstand zwischen den Buttons
+            publicPfadEintraegeToDisplay.Clear();
+            List<publicPfadEintrag> publicPfadEintraegeSorted = publicPfadEintraege.Where(x => x.Abteilung == configEintraege[0].Abteilung | x.Abteilung == "Alle").ToList();
+            foreach (publicPfadEintrag eintrag in publicPfadEintraegeSorted)
+            {
+                publicPfadEintraegeToDisplay.Add(eintrag);
+            }
 
-            for (int i = 0; i < publicPfadEintraege.Count; i++)
+            for (int i = 0; i < publicPfadEintraegeToDisplay.Count; i++)
             {
                 Button button = new Button();
-                button.Name = publicPfadEintraege[i].Dateipfad;
-                button.Text = publicPfadEintraege[i].Name;
+                button.Name = publicPfadEintraegeToDisplay[i].Dateipfad;
+                button.Text = publicPfadEintraegeToDisplay[i].Name;
                 button.Width = buttonWidth;
                 button.Height = buttonHeight;
                 button.UseVisualStyleBackColor = true;
@@ -497,26 +506,27 @@ namespace Dateiverwaltung
                 publicPfadEintraege.RemoveAt(index);
                 dataGridView1.Rows.RemoveAt(index);
             }
+            updateButtonView();
+            /*            var allAbteilunsTabButtons = abteilungsTab.Controls.OfType<Button>().ToList();
+                        var buttonsToKeepAbteilungsTab = allAbteilunsTabButtons.Where(b => !toDeleteName.Contains(b.Text)).ToList();
 
-            var allAbteilunsTabButtons = abteilungsTab.Controls.OfType<Button>().ToList();
-            var buttonsToKeepAbteilungsTab = allAbteilunsTabButtons.Where(b => !toDeleteName.Contains(b.Text)).ToList();
-
-            foreach (Button button in allAbteilunsTabButtons.Except(buttonsToKeepAbteilungsTab))
-            {
-                abteilungsTab.Controls.Remove(button);
-            }
-            int newButtonIndex = 0;
-            int buttonWidth = 130;
-            int buttonHeight = 45;
-            int spacing = 10;
-            foreach (Button button in buttonsToKeepAbteilungsTab)
-            {
-                int x = (newButtonIndex % 4) * (buttonWidth + spacing) + spacing;
-                int y = (newButtonIndex / 4) * (buttonHeight + spacing) + spacing;
-                button.Location = new Point(x, y);
-                newButtonIndex++;
-            }
-            savePublicDB();
+                        foreach (Button button in allAbteilunsTabButtons.Except(buttonsToKeepAbteilungsTab))
+                        {
+                            abteilungsTab.Controls.Remove(button);
+                        }
+                        int newButtonIndex = 0;
+                        int buttonWidth = 130;
+                        int buttonHeight = 45;
+                        int spacing = 10;
+                        foreach (Button button in buttonsToKeepAbteilungsTab)
+                        {
+                            int x = (newButtonIndex % 4) * (buttonWidth + spacing) + spacing;
+                            int y = (newButtonIndex / 4) * (buttonHeight + spacing) + spacing;
+                            button.Location = new Point(x, y);
+                            newButtonIndex++;
+                        }
+                        savePublicDB();
+            */
         }
 
         private void Group1_CheckBox_CheckedChanged(object sender, EventArgs e)
