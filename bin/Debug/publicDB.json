@@ -40,5 +40,11 @@
     "Dateipfad": "www.google.de",
     "Abteilung": "Alle",
     "Passwort": null
+  },
+  {
+    "Name": "ventile",
+    "Dateipfad": "ventile",
+    "Abteilung": "Ventile",
+    "Passwort": null
   }
 ]

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json;
+using System.Globalization;
 
 //using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 // Latest Version
@@ -20,13 +21,17 @@ namespace Dateiverwaltung
     {
         List<publicPfadEintrag> publicPfadEintraege;
         List<privatPfadEintrag> privatPfadEintraege;
+        List<config> configEintraege = new List<config>();
+
+        string configPath = "C:\\Dateiverwaltung";
+        string configName = "config.ini";
+
         string publicDBPath = Path.Combine(Environment.CurrentDirectory).ToString();
         string publicDBName = "publicDB.json";
 
-        string privatDBPath = "C:\\Dateiverwaltung";
         string privatDBName = "privatDB.json";
 
-        string[] abteilungsAuswahl = new string[] { "Aggregate", "Blöcke", "Mechatronik" };
+        string[] abteilungsAuswahl = new string[] { "Aggregate", "Blöcke", "Mechatronik", "Ventile" };
 
         bool neuerPfadWaterMarkActive = true;
         bool neuerNameWaterMarkActive = true;
@@ -34,6 +39,34 @@ namespace Dateiverwaltung
         public Form1()
         {
             InitializeComponent();
+
+            try
+            {
+                if (File.Exists(string.Join("\\", configPath, configName)))
+                {
+                    configEintraege = JsonConvert.DeserializeObject<List<config>>(File.ReadAllText(string.Join("\\", configPath, configName)));
+                    Debug.WriteLine("Abteilung in Config: " + configEintraege[0].Abteilung);
+                    Debug.WriteLine("privatDBPath in Config: " + configEintraege[0].privatDBPath);
+                }
+                else
+                {
+                    Debug.WriteLine("Config nicht vorhanden. Wird erstellt");
+                    config newConfig = new config
+                    {
+                        privatDBPath = configPath,
+                        Abteilung = null
+                    };
+                    configEintraege.Add(newConfig);
+
+                    string json = JsonConvert.SerializeObject(configEintraege, Formatting.Indented);
+                    File.WriteAllText(Path.Combine(configPath, configName), json);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Datei " + configName + " in Pfad " + "'" + configPath + "'" + " nicht vorhanden!");
+                throw;
+            }
 
             try
             {
@@ -47,9 +80,12 @@ namespace Dateiverwaltung
 
             try
             {
-                if (File.Exists(string.Join("\\", privatDBPath, privatDBName)))
+                if (configEintraege[0].privatDBPath != null)
                 {
-                    privatPfadEintraege = JsonConvert.DeserializeObject<List<privatPfadEintrag>>(File.ReadAllText(string.Join("\\", privatDBPath, privatDBName)));
+                    if (File.Exists(string.Join("\\", configEintraege[0].privatDBPath, privatDBName)))
+                    {
+                        privatPfadEintraege = JsonConvert.DeserializeObject<List<privatPfadEintrag>>(File.ReadAllText(string.Join("\\", configEintraege[0].privatDBPath, privatDBName)));
+                    }
                 }
                 else
                 {
@@ -58,7 +94,7 @@ namespace Dateiverwaltung
             }
             catch (Exception)
             {
-                MessageBox.Show("Datei " + privatDBName + " in Pfad " + "'" + privatDBPath + "'" + " nicht vorhanden!");
+                MessageBox.Show("Datei " + privatDBName + " in Pfad " + "'" + configEintraege[0].privatDBPath + "'" + " nicht vorhanden!");
                 throw;
             }
 
@@ -71,7 +107,7 @@ namespace Dateiverwaltung
             displayComputerName.Text = Environment.MachineName;
 
             textBoxPublicDBPath.Text = string.Join("\\", publicDBPath, publicDBName);
-            textBoxPrivatDBPath.Text = string.Join("\\", privatDBPath, privatDBName);
+            textBoxPrivatDBPath.Text = string.Join("\\", configEintraege[0].privatDBPath, privatDBName);
 
             textBoxNeuerPfad.GotFocus += (source, e) =>
             {
@@ -135,10 +171,10 @@ namespace Dateiverwaltung
             };
         }
 
-        string ausgewaehlteAbteilung = null;
         private void comboBoxAbteilungsauswahl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ausgewaehlteAbteilung = comboBoxAbteilungsauswahl.SelectedItem.ToString();
+            configEintraege[0].Abteilung = comboBoxAbteilungsauswahl.SelectedItem.ToString();
+            saveConfig();
         }
 
             private void createPublicGridView()
@@ -163,8 +199,11 @@ namespace Dateiverwaltung
                     case "Mechatronik":
                         dataGridView1[5, i].Value = true;
                         break;
-                    case "Alle":
+                    case "Ventile":
                         dataGridView1[6, i].Value = true;
+                        break;
+                    case "Alle":
+                        dataGridView1[7, i].Value = true;
                         break;
                 }
             }
@@ -298,7 +337,7 @@ namespace Dateiverwaltung
                 if (publicPfadEintraege[e.RowIndex].Abteilung != "Aggregate")
                 {
                     publicPfadEintraege[e.RowIndex].Abteilung = "Aggregate";
-                    dataGridView1[4, e.RowIndex].Value = dataGridView1[5, e.RowIndex].Value = dataGridView1[6, e.RowIndex].Value = false;
+                    dataGridView1[4, e.RowIndex].Value = dataGridView1[5, e.RowIndex].Value = dataGridView1[6, e.RowIndex].Value = dataGridView1[7, e.RowIndex].Value = false;
 
                     string json = JsonConvert.SerializeObject(publicPfadEintraege, Formatting.Indented);
                     File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "Datenbank.json"), json);
@@ -310,7 +349,7 @@ namespace Dateiverwaltung
                 if (publicPfadEintraege[e.RowIndex].Abteilung != "Blöcke")
                 {
                     publicPfadEintraege[e.RowIndex].Abteilung = "Blöcke";
-                    dataGridView1[3, e.RowIndex].Value = dataGridView1[5, e.RowIndex].Value = dataGridView1[6, e.RowIndex].Value = false;
+                    dataGridView1[3, e.RowIndex].Value = dataGridView1[5, e.RowIndex].Value = dataGridView1[6, e.RowIndex].Value = dataGridView1[7, e.RowIndex].Value = false;
 
                     string json = JsonConvert.SerializeObject(publicPfadEintraege, Formatting.Indented);
                     File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "Datenbank.json"), json);
@@ -322,7 +361,7 @@ namespace Dateiverwaltung
                 if (publicPfadEintraege[e.RowIndex].Abteilung != "Mechatronik")
                 {
                     publicPfadEintraege[e.RowIndex].Abteilung = "Mechatronik";
-                    dataGridView1[3, e.RowIndex].Value = dataGridView1[4, e.RowIndex].Value = dataGridView1[6, e.RowIndex].Value = false;
+                    dataGridView1[3, e.RowIndex].Value = dataGridView1[4, e.RowIndex].Value = dataGridView1[6, e.RowIndex].Value = dataGridView1[7, e.RowIndex].Value = false;
 
                     string json = JsonConvert.SerializeObject(publicPfadEintraege, Formatting.Indented);
                     File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "Datenbank.json"), json);
@@ -331,10 +370,22 @@ namespace Dateiverwaltung
 
             if (e.ColumnIndex == 6 && e.RowIndex != -1)
             {
+                if (publicPfadEintraege[e.RowIndex].Abteilung != "Ventile")
+                {
+                    publicPfadEintraege[e.RowIndex].Abteilung = "Ventile";
+                    dataGridView1[3, e.RowIndex].Value = dataGridView1[4, e.RowIndex].Value = dataGridView1[5, e.RowIndex].Value = dataGridView1[7, e.RowIndex].Value = false;
+
+                    string json = JsonConvert.SerializeObject(publicPfadEintraege, Formatting.Indented);
+                    File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "Datenbank.json"), json);
+                }
+            }
+
+            if (e.ColumnIndex == 7 && e.RowIndex != -1)
+            {
                 if (publicPfadEintraege[e.RowIndex].Abteilung != "Alle")
                 {
                     publicPfadEintraege[e.RowIndex].Abteilung = "Alle";
-                    dataGridView1[3, e.RowIndex].Value = dataGridView1[4, e.RowIndex].Value = dataGridView1[5, e.RowIndex].Value = false;
+                    dataGridView1[3, e.RowIndex].Value = dataGridView1[4, e.RowIndex].Value = dataGridView1[5, e.RowIndex].Value = dataGridView1[6, e.RowIndex].Value = false;
 
                     string json = JsonConvert.SerializeObject(publicPfadEintraege, Formatting.Indented);
                     File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "Datenbank.json"), json);
@@ -353,9 +404,8 @@ namespace Dateiverwaltung
 
         private void btnNeuerPublicEintragSichern_Click(object sender, EventArgs e)
         {
-            if (textBoxNeuerName.Text != "Name..." && textBoxNeuerName.Text != "" && textBoxNeuerPfad.Text != "Pfad/Link..." && textBoxNeuerPfad.Text != "" && checkBoxAggregate.Checked | checkBoxBloecke.Checked | checkBoxMechatronik.Checked | checkBoxAlle.Checked)
+            if (textBoxNeuerName.Text != "Name..." && textBoxNeuerName.Text != "" && textBoxNeuerPfad.Text != "Pfad/Link..." && textBoxNeuerPfad.Text != "" && checkBoxAggregate.Checked | checkBoxBloecke.Checked | checkBoxMechatronik.Checked | checkBoxVentile.Checked | checkBoxAlle.Checked)
             {
-                labelFehlerhafteEingabe.Visible = false;
                 string abteilungsName = "";
                 foreach (Control c in groupBox1.Controls)
                 {
@@ -402,6 +452,9 @@ namespace Dateiverwaltung
                     case "Mechatronik":
                         dataGridView1[5, dataGridView1.RowCount - 1].Value = true;
                         break;
+                    case "Ventile":
+                        dataGridView1[6, dataGridView1.RowCount - 1].Value = true;
+                        break;
                     case "Alle":
                         dataGridView1[6, dataGridView1.RowCount - 1].Value = true;
                         break;
@@ -413,29 +466,6 @@ namespace Dateiverwaltung
                 textBoxNeuerName.Text = "Name...";
                 textBoxNeuerName.ForeColor = Color.Gray;
                 createPublicButtonView();
-            }
-            else
-            {
-                if (textBoxNeuerName.Text == "Name..." | textBoxNeuerName.Text == "" && textBoxNeuerPfad.Text == "Pfad/Link..." | textBoxNeuerPfad.Text == "" && checkBoxAggregate.Checked == false | checkBoxBloecke.Checked == false | checkBoxMechatronik.Checked == false | checkBoxAlle.Checked == false)
-                {
-                    labelFehlerhafteEingabe.Visible = true;
-                    labelFehlerhafteEingabe.Text = "Fehlende Eingabe!";
-                }
-                else if (textBoxNeuerName.Text == "Name..." | textBoxNeuerName.Text == "" && textBoxNeuerPfad.Text != "Pfad/Link..." && textBoxNeuerPfad.Text != "" && checkBoxAggregate.Checked | checkBoxBloecke.Checked | checkBoxMechatronik.Checked | checkBoxAlle.Checked)
-                {
-                    labelFehlerhafteEingabe.Visible = true;
-                    labelFehlerhafteEingabe.Text = "Überprüfe Name!";
-                }
-                else if (textBoxNeuerPfad.Text == "Pfad/Link..." | textBoxNeuerPfad.Text == "" && textBoxNeuerName.Text != "Name..." && textBoxNeuerName.Text != "" && checkBoxAggregate.Checked | checkBoxBloecke.Checked | checkBoxMechatronik.Checked | checkBoxAlle.Checked)
-                {
-                    labelFehlerhafteEingabe.Visible = true;
-                    labelFehlerhafteEingabe.Text = "Überprüfe Pfad!";
-                }
-                else if (textBoxNeuerPfad.Text != "Pfad/Link..." && textBoxNeuerPfad.Text != "" && textBoxNeuerName.Text != "Name..." && textBoxNeuerName.Text != "" && checkBoxAggregate.Checked == false && checkBoxBloecke.Checked == false && checkBoxMechatronik.Checked == false && checkBoxAlle.Checked == false)
-                {
-                    labelFehlerhafteEingabe.Visible = true;
-                    labelFehlerhafteEingabe.Text = "Überprüfe Abteilung!";
-                }
             }
         }
 
@@ -521,6 +551,12 @@ namespace Dateiverwaltung
         {
             string json = JsonConvert.SerializeObject(publicPfadEintraege, Formatting.Indented);
             File.WriteAllText(string.Join(publicDBPath, publicDBName), json);
+        }
+
+        void saveConfig()
+        {
+            string config = JsonConvert.SerializeObject(configEintraege, Formatting.Indented);
+            File.WriteAllText(string.Join("\\", configPath, configName), config);
         }
 
         private void btnReiheNachOben_Click(object sender, EventArgs e)
