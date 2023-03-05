@@ -26,6 +26,8 @@ namespace Dateiverwaltung
         string privatDBPath = "C:\\Dateiverwaltung";
         string privatDBName = "privatDB.json";
 
+        string[] abteilungsAuswahl = new string[] { "Aggregate", "Blöcke", "Mechatronik" };
+
         bool neuerPfadWaterMarkActive = true;
         bool neuerNameWaterMarkActive = true;
         bool passwortNeueDateiWaterMark = true;
@@ -60,9 +62,11 @@ namespace Dateiverwaltung
                 throw;
             }
 
+            comboBoxAbteilungsauswahl.Items.AddRange(abteilungsAuswahl);
+            
             createPublicGridView();
             createPublicButtonView();
-
+            
             displayUserName.Text = string.Join("\\", Environment.UserDomainName, Environment.UserName);
             displayComputerName.Text = Environment.MachineName;
 
@@ -131,7 +135,13 @@ namespace Dateiverwaltung
             };
         }
 
-        private void createPublicGridView()
+        string ausgewaehlteAbteilung = null;
+        private void comboBoxAbteilungsauswahl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ausgewaehlteAbteilung = comboBoxAbteilungsauswahl.SelectedItem.ToString();
+        }
+
+            private void createPublicGridView()
         {
             //Row 0 Löschen 1 Name 2 Dateipfad 3 Aggregate 4 Blöcke 5 Mechatronik 6 Alle
             for (int i = 0; i < publicPfadEintraege.Count; i++)

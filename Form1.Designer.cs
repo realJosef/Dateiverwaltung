@@ -65,6 +65,7 @@ namespace Dateiverwaltung
             this.textBoxNeuerPfad = new System.Windows.Forms.TextBox();
             this.userTab = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.btnCreatePrivatDB = new System.Windows.Forms.Button();
             this.textBoxPrivatDBPath = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBoxPublicDBPath = new System.Windows.Forms.TextBox();
@@ -75,7 +76,8 @@ namespace Dateiverwaltung
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnCreatePrivatDB = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBoxAbteilungsauswahl = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.verwaltungsTab.SuspendLayout();
@@ -427,6 +429,8 @@ namespace Dateiverwaltung
             // 
             // userTab
             // 
+            this.userTab.Controls.Add(this.comboBoxAbteilungsauswahl);
+            this.userTab.Controls.Add(this.label2);
             this.userTab.Controls.Add(this.groupBox4);
             this.userTab.Controls.Add(this.groupBox3);
             this.userTab.Controls.Add(this.displayComputerName);
@@ -444,12 +448,22 @@ namespace Dateiverwaltung
             // 
             this.groupBox4.Controls.Add(this.btnCreatePrivatDB);
             this.groupBox4.Controls.Add(this.textBoxPrivatDBPath);
-            this.groupBox4.Location = new System.Drawing.Point(7, 133);
+            this.groupBox4.Location = new System.Drawing.Point(7, 155);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(779, 85);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Privater Datenbank Pfad";
+            // 
+            // btnCreatePrivatDB
+            // 
+            this.btnCreatePrivatDB.Location = new System.Drawing.Point(7, 51);
+            this.btnCreatePrivatDB.Name = "btnCreatePrivatDB";
+            this.btnCreatePrivatDB.Size = new System.Drawing.Size(125, 23);
+            this.btnCreatePrivatDB.TabIndex = 1;
+            this.btnCreatePrivatDB.Text = "Erstelle Datei";
+            this.btnCreatePrivatDB.UseVisualStyleBackColor = true;
+            this.btnCreatePrivatDB.Visible = false;
             // 
             // textBoxPrivatDBPath
             // 
@@ -461,7 +475,7 @@ namespace Dateiverwaltung
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.textBoxPublicDBPath);
-            this.groupBox3.Location = new System.Drawing.Point(6, 69);
+            this.groupBox3.Location = new System.Drawing.Point(6, 91);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(779, 58);
             this.groupBox3.TabIndex = 5;
@@ -525,15 +539,23 @@ namespace Dateiverwaltung
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // btnCreatePrivatDB
+            // label2
             // 
-            this.btnCreatePrivatDB.Location = new System.Drawing.Point(7, 51);
-            this.btnCreatePrivatDB.Name = "btnCreatePrivatDB";
-            this.btnCreatePrivatDB.Size = new System.Drawing.Size(125, 23);
-            this.btnCreatePrivatDB.TabIndex = 1;
-            this.btnCreatePrivatDB.Text = "Erstelle Datei";
-            this.btnCreatePrivatDB.UseVisualStyleBackColor = true;
-            this.btnCreatePrivatDB.Visible = false;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 62);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 16);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Abteilung:";
+            // 
+            // comboBoxAbteilungsauswahl
+            // 
+            this.comboBoxAbteilungsauswahl.FormattingEnabled = true;
+            this.comboBoxAbteilungsauswahl.Location = new System.Drawing.Point(131, 59);
+            this.comboBoxAbteilungsauswahl.Name = "comboBoxAbteilungsauswahl";
+            this.comboBoxAbteilungsauswahl.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxAbteilungsauswahl.TabIndex = 8;
+            this.comboBoxAbteilungsauswahl.SelectedIndexChanged += new System.EventHandler(this.comboBoxAbteilungsauswahl_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -607,6 +629,8 @@ namespace Dateiverwaltung
         private GroupBox groupBox4;
         private TextBox textBoxPrivatDBPath;
         private Button btnCreatePrivatDB;
+        private ComboBox comboBoxAbteilungsauswahl;
+        private Label label2;
     }
 }
 
