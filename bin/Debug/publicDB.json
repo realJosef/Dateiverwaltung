@@ -8,7 +8,7 @@
   {
     "Name": "Datei2",
     "Dateipfad": "C:/Dokumente/Datei2.txt",
-    "Abteilung": "Blöcke",
+    "Abteilung": "Alle",
     "Passwort": null
   },
   {
@@ -36,9 +36,63 @@
     "Passwort": null
   },
   {
-    "Name": "google",
-    "Dateipfad": "google",
+    "Name": "seafsaef",
+    "Dateipfad": "saefsaef",
     "Abteilung": "Ventile",
+    "Passwort": null
+  },
+  {
+    "Name": "new",
+    "Dateipfad": "new",
+    "Abteilung": "Alle",
+    "Passwort": null
+  },
+  {
+    "Name": "new1",
+    "Dateipfad": "new1",
+    "Abteilung": "Mechatronik",
+    "Passwort": null
+  },
+  {
+    "Name": "agg",
+    "Dateipfad": "agg",
+    "Abteilung": "Aggregate",
+    "Passwort": null
+  },
+  {
+    "Name": "blö",
+    "Dateipfad": "blö",
+    "Abteilung": "Blöcke",
+    "Passwort": null
+  },
+  {
+    "Name": "mec",
+    "Dateipfad": "mec",
+    "Abteilung": "Mechatronik",
+    "Passwort": null
+  },
+  {
+    "Name": "ven",
+    "Dateipfad": "ven",
+    "Abteilung": "Ventile",
+    "Passwort": null
+  },
+  {
+    "Name": "all",
+    "Dateipfad": "all",
+    "Abteilung": "Alle",
+    "Passwort": null
+  },
+  {
+    "Name": "ven",
+    "Dateipfad": "ven",
+    "Abteilung": "Ventile",
+    "Passwort": null
+  },
+  {
+    "Name": "al",
+    "Dateipfad": "al",
+    "Abteilung": "Alle",
     "Passwort": null
   }
 ]

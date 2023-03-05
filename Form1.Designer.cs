@@ -51,7 +51,6 @@ namespace Dateiverwaltung
             this.ventileColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.alleColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBoxVentile = new System.Windows.Forms.CheckBox();
             this.checkBoxAlle = new System.Windows.Forms.CheckBox();
             this.checkBoxMechatronik = new System.Windows.Forms.CheckBox();
             this.checkBoxBloecke = new System.Windows.Forms.CheckBox();
@@ -78,6 +77,7 @@ namespace Dateiverwaltung
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.checkBoxVentile = new System.Windows.Forms.CheckBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.verwaltungsTab.SuspendLayout();
@@ -112,6 +112,7 @@ namespace Dateiverwaltung
             // 
             // abteilungsTab
             // 
+            this.abteilungsTab.BackColor = System.Drawing.Color.Transparent;
             this.abteilungsTab.Location = new System.Drawing.Point(4, 25);
             this.abteilungsTab.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.abteilungsTab.Name = "abteilungsTab";
@@ -119,10 +120,10 @@ namespace Dateiverwaltung
             this.abteilungsTab.Size = new System.Drawing.Size(789, 419);
             this.abteilungsTab.TabIndex = 0;
             this.abteilungsTab.Text = "Abteilung";
-            this.abteilungsTab.UseVisualStyleBackColor = true;
             // 
             // verwaltungsTab
             // 
+            this.verwaltungsTab.BackColor = System.Drawing.Color.Transparent;
             this.verwaltungsTab.Controls.Add(this.groupBox2);
             this.verwaltungsTab.Controls.Add(this.groupBox1);
             this.verwaltungsTab.Location = new System.Drawing.Point(4, 25);
@@ -131,7 +132,6 @@ namespace Dateiverwaltung
             this.verwaltungsTab.Size = new System.Drawing.Size(789, 419);
             this.verwaltungsTab.TabIndex = 2;
             this.verwaltungsTab.Text = "Verwaltung";
-            this.verwaltungsTab.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -196,14 +196,15 @@ namespace Dateiverwaltung
             this.ventileColumn,
             this.alleColumn});
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 22);
+            this.dataGridView1.Location = new System.Drawing.Point(5, 22);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(781, 258);
+            this.dataGridView1.Size = new System.Drawing.Size(770, 262);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridView1_CellBeginEdit);
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             // 
@@ -293,17 +294,6 @@ namespace Dateiverwaltung
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Neuer Eintrag";
-            // 
-            // checkBoxVentile
-            // 
-            this.checkBoxVentile.AutoSize = true;
-            this.checkBoxVentile.Location = new System.Drawing.Point(361, 57);
-            this.checkBoxVentile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.checkBoxVentile.Name = "checkBoxVentile";
-            this.checkBoxVentile.Size = new System.Drawing.Size(70, 20);
-            this.checkBoxVentile.TabIndex = 18;
-            this.checkBoxVentile.Text = "Ventile";
-            this.checkBoxVentile.UseVisualStyleBackColor = true;
             // 
             // checkBoxAlle
             // 
@@ -427,6 +417,7 @@ namespace Dateiverwaltung
             // 
             // userTab
             // 
+            this.userTab.BackColor = System.Drawing.Color.Transparent;
             this.userTab.Controls.Add(this.comboBoxAbteilungsauswahl);
             this.userTab.Controls.Add(this.label2);
             this.userTab.Controls.Add(this.groupBox4);
@@ -440,7 +431,6 @@ namespace Dateiverwaltung
             this.userTab.Size = new System.Drawing.Size(789, 419);
             this.userTab.TabIndex = 3;
             this.userTab.Text = "User";
-            this.userTab.UseVisualStyleBackColor = true;
             // 
             // comboBoxAbteilungsauswahl
             // 
@@ -490,6 +480,7 @@ namespace Dateiverwaltung
             // 
             // groupBox3
             // 
+            this.groupBox3.BackColor = System.Drawing.Color.Transparent;
             this.groupBox3.Controls.Add(this.textBoxPublicDBPath);
             this.groupBox3.Location = new System.Drawing.Point(6, 91);
             this.groupBox3.Name = "groupBox3";
@@ -555,10 +546,22 @@ namespace Dateiverwaltung
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // checkBoxVentile
+            // 
+            this.checkBoxVentile.AutoSize = true;
+            this.checkBoxVentile.Location = new System.Drawing.Point(361, 56);
+            this.checkBoxVentile.Name = "checkBoxVentile";
+            this.checkBoxVentile.Size = new System.Drawing.Size(70, 20);
+            this.checkBoxVentile.TabIndex = 18;
+            this.checkBoxVentile.Text = "Ventile";
+            this.checkBoxVentile.UseVisualStyleBackColor = true;
+            this.checkBoxVentile.CheckedChanged += new System.EventHandler(this.Group1_CheckBox_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(804, 450);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

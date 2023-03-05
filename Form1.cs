@@ -177,7 +177,7 @@ namespace Dateiverwaltung
         {
             configEintraege[0].Abteilung = comboBoxAbteilungsauswahl.SelectedItem.ToString();
             saveConfig();
-            createPublicButtonView();
+            updateButtonView();
         }
 
             private void createPublicGridView()
@@ -188,7 +188,15 @@ namespace Dateiverwaltung
                 dataGridView1.Rows.Add();
                 dataGridView1[1, i].Value = publicPfadEintraege[i].Name;
                 dataGridView1[2, i].Value = publicPfadEintraege[i].Dateipfad;
-
+                foreach (DataGridViewColumn col in dataGridView1.Columns)
+                {
+                    if (col.HeaderText == publicPfadEintraege[i].Abteilung && dataGridView1[col.Index, i] is DataGridViewCheckBoxCell)
+                    {
+                        dataGridView1[col.Index, i].Value = true;
+                    }
+                }
+                
+                /*
                 switch (publicPfadEintraege[i].Abteilung)
                 {
                     case "Aggregate":
@@ -208,7 +216,7 @@ namespace Dateiverwaltung
                     case "Alle":
                         dataGridView1[7, i].Value = true;
                         break;
-                }
+                }*/
             }
         }
 
@@ -340,65 +348,25 @@ namespace Dateiverwaltung
                 {
                 }
             }
+            updateButtonView();
+        }
 
-            if (e.ColumnIndex == 3 && e.RowIndex != -1)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Überprüfen, ob die geklickte Zelle eine CheckBox ist
+            if (dataGridView1.Columns[e.ColumnIndex] is DataGridViewCheckBoxColumn && e.RowIndex >= 0)
             {
-                if (publicPfadEintraege[e.RowIndex].Abteilung != "Aggregate")
+                // Deaktivieren Sie alle anderen CheckBoxes in der Zeile
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                foreach (DataGridViewCell cell in row.Cells)
                 {
-                    publicPfadEintraege[e.RowIndex].Abteilung = "Aggregate";
-                    dataGridView1[4, e.RowIndex].Value = dataGridView1[5, e.RowIndex].Value = dataGridView1[6, e.RowIndex].Value = dataGridView1[7, e.RowIndex].Value = false;
-
-                    string json = JsonConvert.SerializeObject(publicPfadEintraege, Formatting.Indented);
-                    File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "Datenbank.json"), json);
+                    if (cell.ColumnIndex != e.ColumnIndex && cell.ColumnIndex != 0 && cell is DataGridViewCheckBoxCell)
+                    {
+                        cell.Value = false;
+                    }
                 }
-            }
-
-            if (e.ColumnIndex == 4 && e.RowIndex != -1)
-            {
-                if (publicPfadEintraege[e.RowIndex].Abteilung != "Blöcke")
-                {
-                    publicPfadEintraege[e.RowIndex].Abteilung = "Blöcke";
-                    dataGridView1[3, e.RowIndex].Value = dataGridView1[5, e.RowIndex].Value = dataGridView1[6, e.RowIndex].Value = dataGridView1[7, e.RowIndex].Value = false;
-
-                    string json = JsonConvert.SerializeObject(publicPfadEintraege, Formatting.Indented);
-                    File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "Datenbank.json"), json);
-                }
-            }
-
-            if (e.ColumnIndex == 5 && e.RowIndex != -1)
-            {
-                if (publicPfadEintraege[e.RowIndex].Abteilung != "Mechatronik")
-                {
-                    publicPfadEintraege[e.RowIndex].Abteilung = "Mechatronik";
-                    dataGridView1[3, e.RowIndex].Value = dataGridView1[4, e.RowIndex].Value = dataGridView1[6, e.RowIndex].Value = dataGridView1[7, e.RowIndex].Value = false;
-
-                    string json = JsonConvert.SerializeObject(publicPfadEintraege, Formatting.Indented);
-                    File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "Datenbank.json"), json);
-                }
-            }
-
-            if (e.ColumnIndex == 6 && e.RowIndex != -1)
-            {
-                if (publicPfadEintraege[e.RowIndex].Abteilung != "Ventile")
-                {
-                    publicPfadEintraege[e.RowIndex].Abteilung = "Ventile";
-                    dataGridView1[3, e.RowIndex].Value = dataGridView1[4, e.RowIndex].Value = dataGridView1[5, e.RowIndex].Value = dataGridView1[7, e.RowIndex].Value = false;
-
-                    string json = JsonConvert.SerializeObject(publicPfadEintraege, Formatting.Indented);
-                    File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "Datenbank.json"), json);
-                }
-            }
-
-            if (e.ColumnIndex == 7 && e.RowIndex != -1)
-            {
-                if (publicPfadEintraege[e.RowIndex].Abteilung != "Alle")
-                {
-                    publicPfadEintraege[e.RowIndex].Abteilung = "Alle";
-                    dataGridView1[3, e.RowIndex].Value = dataGridView1[4, e.RowIndex].Value = dataGridView1[5, e.RowIndex].Value = dataGridView1[6, e.RowIndex].Value = false;
-
-                    string json = JsonConvert.SerializeObject(publicPfadEintraege, Formatting.Indented);
-                    File.WriteAllText(Path.Combine(Environment.CurrentDirectory, "Datenbank.json"), json);
-                }
+                publicPfadEintraege[e.RowIndex].Abteilung = dataGridView1.Columns[e.ColumnIndex].HeaderText;
+                updateButtonView();
             }
         }
 
@@ -465,9 +433,10 @@ namespace Dateiverwaltung
                         dataGridView1[6, dataGridView1.RowCount - 1].Value = true;
                         break;
                     case "Alle":
-                        dataGridView1[6, dataGridView1.RowCount - 1].Value = true;
+                        dataGridView1[7, dataGridView1.RowCount - 1].Value = true;
                         break;
                 }
+
                 neuerPfadWaterMarkActive = true;
                 textBoxNeuerPfad.Text = "Pfad/Link...";
                 textBoxNeuerPfad.ForeColor = Color.Gray;
