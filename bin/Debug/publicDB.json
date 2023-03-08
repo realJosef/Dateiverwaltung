@@ -1,98 +1,32 @@
 [
   {
-    "Name": "Datei1",
-    "Dateipfad": "C:/Dokumente/Datei1.txt",
+    "Name": "MobA-Tool",
+    "Dateipfad": "https://his.hydac.com/moba-tool",
+    "Abteilung": "Alle",
+    "Passwort": null
+  },
+  {
+    "Name": "Urlaubsplan",
+    "Dateipfad": "U:\\MH\\MH-Versuch\\Allgemein\\Urlaubsplan.xlsb",
+    "Abteilung": "Alle",
+    "Passwort": null
+  },
+  {
+    "Name": "Hydraulik Berechnungen",
+    "Dateipfad": "U:\\MH\\MH-Versuch\\User\\Störr\\Docs\\HYDRAULIK_Berechnungen.xls",
     "Abteilung": "Aggregate",
     "Passwort": null
   },
   {
-    "Name": "Datei2",
-    "Dateipfad": "C:/Dokumente/Datei2.txt",
-    "Abteilung": "Alle",
-    "Passwort": null
-  },
-  {
-    "Name": "Datei3",
-    "Dateipfad": "C:/Dokumente/Datei3.txt",
-    "Abteilung": "Mechatronik",
-    "Passwort": null
-  },
-  {
-    "Name": "Datei4",
-    "Dateipfad": "C:/Dokumente/Datei4.txt",
-    "Abteilung": "Alle",
-    "Passwort": null
-  },
-  {
-    "Name": "test",
-    "Dateipfad": "C:\\Stuff\\Code\\Dateiverwaltung\\newDateiverwaltung\\PfadVerwaltung.cs",
+    "Name": "Auftragsplanung",
+    "Dateipfad": "U:\\MH\\MH-Versuch\\Aggregate\\Dokumente und Infos allgemein\\Auftragsplanung.xlsb",
     "Abteilung": "Aggregate",
-    "Passwort": null
+    "Passwort": "UTBoRlVFVkJNakF5TUE9PQ=="
   },
   {
-    "Name": "test1",
-    "Dateipfad": "test1",
-    "Abteilung": "Aggregate",
-    "Passwort": null
-  },
-  {
-    "Name": "seafsaef",
-    "Dateipfad": "saefsaef",
-    "Abteilung": "Ventile",
-    "Passwort": null
-  },
-  {
-    "Name": "new",
-    "Dateipfad": "new",
+    "Name": "Musterregal",
+    "Dateipfad": "I:\\_Austausch_HFL-HMH\\Lagerverwaltung Versuch\\Musterregale_MH-V.xlsb",
     "Abteilung": "Alle",
-    "Passwort": null
-  },
-  {
-    "Name": "new1",
-    "Dateipfad": "new1",
-    "Abteilung": "Mechatronik",
-    "Passwort": null
-  },
-  {
-    "Name": "agg",
-    "Dateipfad": "agg",
-    "Abteilung": "Aggregate",
-    "Passwort": null
-  },
-  {
-    "Name": "blö",
-    "Dateipfad": "blö",
-    "Abteilung": "Blöcke",
-    "Passwort": null
-  },
-  {
-    "Name": "mec",
-    "Dateipfad": "mec",
-    "Abteilung": "Mechatronik",
-    "Passwort": null
-  },
-  {
-    "Name": "ven",
-    "Dateipfad": "ven",
-    "Abteilung": "Ventile",
-    "Passwort": null
-  },
-  {
-    "Name": "all",
-    "Dateipfad": "all",
-    "Abteilung": "Alle",
-    "Passwort": null
-  },
-  {
-    "Name": "ven",
-    "Dateipfad": "ven",
-    "Abteilung": "Ventile",
-    "Passwort": null
-  },
-  {
-    "Name": "al",
-    "Dateipfad": "al",
-    "Abteilung": "Alle",
-    "Passwort": null
+    "Passwort": "VFhWemRHVnljbVZuWVd3aA=="
   }
 ]

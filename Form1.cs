@@ -43,6 +43,10 @@ namespace Dateiverwaltung
 
             try
             {
+                if (!Directory.Exists(configPath))
+                {
+                    Directory.CreateDirectory(configPath);
+                }
                 if (File.Exists(string.Join("\\", configPath, configName)))
                 {
                     configEintraege = JsonConvert.DeserializeObject<List<config>>(File.ReadAllText(string.Join("\\", configPath, configName)));
@@ -51,7 +55,6 @@ namespace Dateiverwaltung
                 }
                 else
                 {
-                    Debug.WriteLine("Config nicht vorhanden. Wird erstellt");
                     config newConfig = new config
                     {
                         privatDBPath = configPath,
@@ -265,9 +268,8 @@ namespace Dateiverwaltung
                 Microsoft.Office.Interop.Excel.Workbook workbook = null;
                 try
                 {
-                    string decryptedExcelPasswort = Encoding.UTF8.GetString(Convert.FromBase64String(passwortEintrag.Passwort));
-                    workbook = excel.Workbooks.Open(button.Name, Password: Encoding.UTF8.GetString(Convert.FromBase64String(decryptedExcelPasswort)), UpdateLinks: 0);
-                    // hier können Sie mit der geöffneten Excel-Datei arbeiten
+                    string decryptedExcelPasswort = Encoding.UTF8.GetString(Convert.FromBase64String(Encoding.UTF8.GetString(Convert.FromBase64String(passwortEintrag.Passwort))));
+                    workbook = excel.Workbooks.Open(button.Name, Password: decryptedExcelPasswort, WriteResPassword: decryptedExcelPasswort, UpdateLinks: 0);
                 }
                 catch (System.Runtime.InteropServices.COMException ex)
                 {
@@ -398,8 +400,8 @@ namespace Dateiverwaltung
                 string neuesExcelPasswort = null;
                 if (textBoxExcelPasswort.Text != "Passwort..." && textBoxExcelPasswort.Text != "")
                 {
-                    string encryptedExcelPasswort = Convert.ToBase64String(Encoding.UTF8.GetBytes(textBoxExcelPasswort.Text));
-                    neuesExcelPasswort = Convert.ToBase64String(Encoding.UTF8.GetBytes(encryptedExcelPasswort));
+                    string encryptedExcelPasswort = textBoxExcelPasswort.Text;
+                    neuesExcelPasswort = Convert.ToBase64String(Encoding.UTF8.GetBytes(Convert.ToBase64String(Encoding.UTF8.GetBytes(encryptedExcelPasswort))));
                 }
 
                 publicPfadEintrag neuerEintrag = new publicPfadEintrag
